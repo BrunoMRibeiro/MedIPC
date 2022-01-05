@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Profile.BookletEditActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layout_gravity="end"
+            android:gravity="end"
+            android:padding="10dp"
+            tools:ignore="UselessParent">
+
+            <Button
+                android:id="@+id/LogOutBE"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:backgroundTint="@color/white"
+                android:text="@string/log_off"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:text="@string/medipc"
+        android:textColor="#8B0000"
+        android:textSize="40sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/vaccine_booklet"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:paddingTop="30dp"
+        android:paddingBottom="10dp">
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:padding="20dp"
+        app:layout_constraintHeight_max="300dp"
+        app:layout_constrainedHeight="true">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            tools:ignore="UselessParent">
+                <TableLayout
+                    android:id="@+id/tableDataBE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="0,1"
+                    android:gravity="center"
+                    android:background="@color/black"
+                    app:layout_constraintHeight_max="300dp"
+                    app:layout_constrainedHeight="true">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="@string/vaccine"
+                            android:layout_margin="1dp"
+                            android:layout_column="0"
+                            android:background="@color/tableTop"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="@string/date"
+                            android:layout_margin="1dp"
+                            android:layout_column="1"
+                            android:background="@color/tableTop"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            />
+                    </TableRow>
+            </TableLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        tools:ignore="RtlSymmetry">
+
+        <Button
+            android:id="@+id/btAddColuBE"
+            android:drawableLeft="@drawable/booklet_add_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_table_line"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            tools:ignore="RtlHardcoded" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_gravity="end">
+
+        <Button
+            android:id="@+id/btDoneBE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/done"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/red"
+            android:layout_marginRight="20dp"
+            tools:ignore="RtlHardcoded" />
+    </LinearLayout>
+
+</LinearLayout>
