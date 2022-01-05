@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">MedIPC</string>
+    <string name="col1">Medicine</string>
+    <string name="col2">Description</string>
+    <string name="col3">Set Time</string>
+    <string name="row1">Benuron</string>
+    <string name="row2">take two pills</string>
+    <string name="row3">16h:30m</string>
+    <string name="row4">Ipobrufeno</string>
+    <string name="row5">NOT empty stomach</string>
+    <string name="row6">12h:00m</string>
+    <string name="row7">Mucosolvan</string>
+    <string name="row8">empty stomach</string>
+    <string name="row9">08h:00m</string>
 </resources>

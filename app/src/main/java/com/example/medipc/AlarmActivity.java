@@ -1,3 +1,4 @@
+/*
 package com.example.medipc;
 
 import android.app.Activity;
@@ -22,14 +23,18 @@ import java.util.TimerTask;
 
 public class AlarmActivity extends AppCompatActivity {
 
-    /*AlarmManager alarmManager;
-    private PendingIntent pendingIntent;*/
+    */
+/*AlarmManager alarmManager;
+    private PendingIntent pendingIntent;*//*
+
 
     private TimePicker alarmTime;
     TextClock currentTime;
     final Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
-    /*private static AlarmActivity inst;
-    private TextView alarmTextView;*/
+    */
+/*private static AlarmActivity inst;
+    private TextView alarmTextView;*//*
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +74,8 @@ public class AlarmActivity extends AppCompatActivity {
         return stringAlarmTime;
     }
 
-    /*public static AlarmActivity instance() {
+    */
+/*public static AlarmActivity instance() {
         return inst;
     }
 
@@ -107,5 +113,7 @@ public class AlarmActivity extends AppCompatActivity {
 
     public void setAlarmText(String alarmText) {
         alarmTextView.setText(alarmText);
-    }*/
+    }*//*
+
     }
+*/
