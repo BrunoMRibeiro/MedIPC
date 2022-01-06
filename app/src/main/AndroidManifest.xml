@@ -63,6 +63,32 @@
                 android:value=".Profile.BookletEditActivity" />
         </activity>
 
+        <activity
+            android:name=".Alarms.AlarmActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".Alarms.AlarmEditActivity"
+            android:exported="true"
+            android:parentActivityName=".Alarms.AlarmActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Alarms.AlarmActivity" />
+        </activity>
+
+        <activity
+            android:name=".Alarms.AlarmAddRowActivity"
+            android:exported="true"
+            android:parentActivityName=".Alarms.AlarmEditActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Alarms.AlarmEditActivity" />
+        </activity>
     </application>
 
 </manifest>
