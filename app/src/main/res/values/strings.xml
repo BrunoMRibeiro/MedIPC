@@ -2,8 +2,10 @@
     <string name="app_name">MedIPC</string>
     <string name="profile">profile</string>
     <string name="need_to_incert_vaccine_name">Need to insert vaccine name.</string>
+    <string name="need_to_incert_medicine_name">Need to insert medicine name.</string>
     <string name="medipc" translatable="false">MedIPC</string>
     <string name="add_vaccine">Add vaccine</string>
+    <string name="add_alarm">Add alarm</string>
     <string name="log_off">Log off</string>
     <string name="vaccine">Vaccine</string>
     <string name="date">Date</string>
@@ -13,11 +15,13 @@
     <string name="vaccine_booklet">Vaccine Booklet</string>
     <string name="edit">Edit</string>
     <string name="add_table_line">Add vaccine</string>
+    <string name="add_table_line_alarm">Add alarm</string>
     <string name="continue_main">Continue</string>
+    <string name="continue_main2">Alarms</string>
     <string name="profile_menu">Profile</string>
     <string name="appointments">Appointments</string>
     <string name="medication">Medication</string>
-    <string name="alarm">Alarm</string>
+    <string name="alarm">alarm</string>
     <string name="attribute">Attribute</string>
     <string name="value">Value</string>
     <string name="name">Name</string>
@@ -28,4 +32,8 @@
     <string name="blood_type">Blood Type</string>
     <string name="alergies">Alergies</string>
     <string name="check_vaccination_booklet">Check Vaccination booklet</string>
+    <string name="alarm_list">Alarm List</string>
+    <string name="medicine">Medicine</string>
+    <string name="description">Description</string>
+    <string name="set_time">Set Time</string>
 </resources>

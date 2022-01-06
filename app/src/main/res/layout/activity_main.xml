@@ -37,5 +37,18 @@
             android:text="@string/continue_main"
             android:textAllCaps="false"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <Button
+            android:id="@+id/btContinue2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/continue_main2"
+            android:textAllCaps="false"/>
+    </LinearLayout>
+
 
 </LinearLayout>
