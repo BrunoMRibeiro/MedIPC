@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Alarms.AlarmActivity"
+    tools:context=".Alarms.AlarmEditActivity"
     android:orientation="vertical">
 
     <LinearLayout
@@ -14,40 +14,23 @@
         android:baselineAligned="false">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:padding="10dp">
-
-            <Button
-                android:id="@+id/btbackAlarm"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:backgroundTint="@color/red"
-                android:text="@string/back"
-                android:layout_marginEnd="10dp"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                android:layout_gravity="end"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:layout_gravity="end"
             android:gravity="end"
-            android:padding="10dp">
+            android:padding="10dp"
+            tools:ignore="UselessParent">
 
             <Button
-                android:id="@+id/LogOutAlarm"
+                android:id="@+id/LogOutAE"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:backgroundTint="@color/white"
                 android:text="@string/log_off"
                 android:textColor="@color/black"
                 android:textSize="12sp"
+
                 />
         </LinearLayout>
     </LinearLayout>
@@ -62,7 +45,6 @@
         android:text="@string/medipc"
         android:textColor="#8B0000"
         android:textSize="40sp" />
-
     <TableLayout
         android:id="@+id/Menu0"
         android:layout_width="match_parent"
@@ -145,24 +127,24 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="260dp"
         android:layout_gravity="center"
         android:padding="20dp"
-        app:layout_constraintHeight_max="300dp"
+        app:layout_constraintHeight_max="260dp"
         app:layout_constrainedHeight="true">
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="260dp"
             tools:ignore="UselessParent">
             <TableLayout
-                android:id="@+id/tableDataAlarm"
+                android:id="@+id/tableDataAlarmEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:stretchColumns="0,1,2"
                 android:gravity="center"
                 android:background="@color/black"
-                app:layout_constraintHeight_max="300dp"
+                app:layout_constraintHeight_max="260dp"
                 app:layout_constrainedHeight="true">
 
                 <TableRow
@@ -213,20 +195,37 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:layout_gravity="center">
+        android:layout_gravity="start"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        tools:ignore="RtlSymmetry">
+
         <Button
-            android:id="@+id/btEditAlarm"
-            android:layout_width="0dp"
+            android:id="@+id/btAddColAlarm"
+            android:drawableLeft="@drawable/booklet_add_row"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/edit"
+            android:text="@string/add_table_line_alarm"
             android:backgroundTint="@color/white"
             android:textColor="@color/black"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            />
-    </LinearLayout>
+            tools:ignore="RtlHardcoded" />
 
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_gravity="end">
+
+        <Button
+            android:id="@+id/btDoneAE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/done"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/red"
+            android:layout_marginRight="20dp"
+            tools:ignore="RtlHardcoded" />
+    </LinearLayout>
 
 </LinearLayout>

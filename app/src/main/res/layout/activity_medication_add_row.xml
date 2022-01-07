@@ -2,9 +2,10 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Alarms.AlarmAddRowActivity"
+    tools:context=".Profile.ProfileActivity"
     android:orientation="vertical">
 
     <LinearLayout
@@ -12,17 +13,16 @@
         android:layout_height="wrap_content"
         android:baselineAligned="false">
 
+
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:layout_gravity="end"
-            android:gravity="end"
-            android:padding="10dp"
-            tools:ignore="UselessParent">
+            android:gravity="end">
 
             <Button
-                android:id="@+id/LogOutAAR"
+                android:id="@+id/LogOutARM"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:backgroundTint="@color/white"
@@ -32,6 +32,7 @@
                 />
         </LinearLayout>
     </LinearLayout>
+
 
     <TextView
         android:id="@+id/text"
@@ -43,17 +44,74 @@
         android:textColor="#8B0000"
         android:textSize="40sp" />
 
-    <TextView
+    <TableLayout
+        android:id="@+id/Menu0"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/add_alarm"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:paddingTop="30dp"
-        android:paddingBottom="10dp">
-    </TextView>
+        android:background="@color/black"
+        android:layout_marginTop="30dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_menu"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:id="@+id/opcao0"
+                android:background="@color/white"
+                android:layout_marginStart="1dp"
+                android:layout_marginVertical="1dp"
+                android:textColor="@color/black"
+                android:height="30dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/appointments"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:id="@+id/opcao1"
+                android:background="@color/white"
+                android:layout_marginStart="1dp"
+                android:layout_marginVertical="1dp"
+                android:textColor="@color/black"
+                android:height="30dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/medication"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:id="@+id/opcao2"
+                android:background="#A9A9A9"
+                android:layout_marginStart="1dp"
+                android:layout_marginVertical="1dp"
+                android:textColor="@color/black"
+                android:height="30dp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Alarm"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:id="@+id/opcao3"
+                android:background="@color/white"
+                android:layout_marginHorizontal="1dp"
+                android:layout_marginVertical="1dp"
+                android:textColor="@color/black"
+                android:height="30dp"/>
+        </TableRow>
+    </TableLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -62,7 +120,7 @@
         android:padding="20dp">
 
         <TableLayout
-            android:id="@+id/tableDataAlarmAddRow"
+            android:id="@+id/tableDataMedicationARM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:stretchColumns="0,1,2"
@@ -79,7 +137,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:text="@string/medicine"
+                    android:text="Medicine"
                     android:layout_margin="1dp"
                     android:layout_column="0"
                     android:background="@color/tableTop"
@@ -91,7 +149,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:text="@string/description"
+                    android:text="Time Int."
                     android:layout_margin="1dp"
                     android:layout_column="1"
                     android:background="@color/tableTop"
@@ -102,7 +160,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:text="@string/set_time"
+                    android:text="Next Take"
                     android:layout_margin="1dp"
                     android:layout_column="2"
                     android:background="@color/tableTop"
@@ -118,7 +176,7 @@
                 android:layout_margin="1dp"
                 android:layout_weight="1">
                 <EditText
-                    android:id="@+id/etMedicineAAR"
+                    android:id="@+id/MedicationARM"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:text=""
@@ -130,7 +188,7 @@
                     android:importantForAutofill="no"
                     tools:ignore="LabelFor,TextFields" />
                 <EditText
-                    android:id="@+id/etDescriptionAAR"
+                    android:id="@+id/HoursARM"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:text=""
@@ -141,7 +199,7 @@
                     android:textColor="@color/black"
                     tools:ignore="Autofill,LabelFor,TextFields" />
                 <EditText
-                    android:id="@+id/etSetTimeAAR"
+                    android:id="@+id/NextTakeARM"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:text=""
@@ -154,7 +212,6 @@
             </TableRow>
         </TableLayout>
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -163,7 +220,7 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/btCancelAAR"
+            android:id="@+id/btCancelARM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cancel"
@@ -173,7 +230,7 @@
             tools:ignore="ButtonStyle" />
 
         <Button
-            android:id="@+id/btDoneAAR"
+            android:id="@+id/btDoneARM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/done"

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity"
-        android:orientation="vertical">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
     <LinearLayout
-            android:id="@+id/llTop"
-            android:orientation="vertical"
-            android:layout_width="411dp"
-            android:layout_height="62dp"
-            tools:layout_editor_absoluteY="28dp"
-            tools:layout_editor_absoluteX="0dp">
+        android:id="@+id/llTop"
+        android:orientation="vertical"
+        android:layout_width="411dp"
+        android:layout_height="62dp"
+        tools:layout_editor_absoluteY="28dp"
+        tools:layout_editor_absoluteX="0dp">
 
         <TextView
             android:text="@string/medipc"
@@ -30,11 +30,11 @@
         android:layout_height="wrap_content"
         android:padding="10dp">
         <Button
-            android:id="@+id/btContinue"
+            android:id="@+id/btProfile"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="@string/continue_main"
+            android:text="Profile"
             android:textAllCaps="false"/>
     </LinearLayout>
     <LinearLayout
@@ -42,11 +42,23 @@
         android:layout_height="wrap_content"
         android:padding="10dp">
         <Button
-            android:id="@+id/btContinue2"
+            android:id="@+id/btAlarm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="@string/continue_main2"
+            android:textAllCaps="false"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <Button
+            android:id="@+id/btMedication"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Medication"
             android:textAllCaps="false"/>
     </LinearLayout>
 

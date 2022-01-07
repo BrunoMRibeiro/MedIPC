@@ -20,7 +20,7 @@ public class AlarmAddRowActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_row_alarm);
+        setContentView(R.layout.activity_alarm_add_row);
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
@@ -75,7 +75,6 @@ public class AlarmAddRowActivity extends AppCompatActivity {
         EditText etSetTime = findViewById(R.id.etSetTimeAAR);
         settime = etSetTime.getText().toString();
 
-        // TODO: Duvida: Pode deixar a data por preencher? Ou tem de preencher os 2?
         if((TextUtils.isEmpty(medicine) && TextUtils.isEmpty(medicine)) || (TextUtils.isEmpty(medicine) && (!TextUtils.isEmpty(medicine)))) {
             Toast.makeText(this,
                     R.string.need_to_incert_medicine_name,

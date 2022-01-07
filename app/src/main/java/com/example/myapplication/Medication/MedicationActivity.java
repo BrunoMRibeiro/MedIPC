@@ -1,4 +1,4 @@
-package com.example.myapplication.Alarms;
+package com.example.myapplication.Medication;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -10,70 +10,65 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 
-public class AlarmActivity extends AppCompatActivity {
-    private AlarmProfile alarmprofile;
+public class MedicationActivity extends AppCompatActivity {
+    private MedicationProfile medicationprofile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_alarm);
+        setContentView(R.layout.activity_medication);
 
         ActionBar ab = getSupportActionBar();
-        if (ab != null) {
+        if(ab != null){
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
-        alarmprofile = new AlarmProfile();
-        if(getIntent().getSerializableExtra(getString(R.string.alarm)) != null)
-            alarmprofile = (AlarmProfile)getIntent().getSerializableExtra(getString(R.string.alarm));
+        medicationprofile = new MedicationProfile();
+        if(getIntent().getSerializableExtra(getString(R.string.medication_key)) != null)
+            medicationprofile = (MedicationProfile) getIntent().getSerializableExtra(getString(R.string.medication_key));
 
-
-        Button aEdit = findViewById(R.id.btEditAlarm);
-        aEdit.setOnClickListener(v -> {
-            Intent myIntent = new Intent(AlarmActivity.this, AlarmEditActivity.class);
-            myIntent.putExtra(getString(R.string.alarm), alarmprofile);
-            AlarmActivity.this.startActivity(myIntent);
+        Button btEdit = findViewById(R.id.btEditM);
+        btEdit.setOnClickListener(v -> {
+            Intent myIntent = new Intent(MedicationActivity.this, MedicationEditActivity.class);
+            myIntent.putExtra(getString(R.string.medication_key), medicationprofile);
+            MedicationActivity.this.startActivity(myIntent);
         });
 
-        Button aBack = findViewById(R.id.btbackAlarm);
-        aBack.setOnClickListener(v -> {
-            Intent myIntent = new Intent(AlarmActivity.this, MainActivity.class);
-            myIntent.putExtra(getString(R.string.alarm), alarmprofile);
-            AlarmActivity.this.startActivity(myIntent);
-        });
-
-        Button aLogOff = findViewById(R.id.LogOutAlarm);
-        aLogOff.setOnClickListener(v -> {
+        Button btLogOff = findViewById(R.id.LogOutM);
+        btLogOff.setOnClickListener(v -> {
             moveTaskToBack(true);
             android.os.Process.killProcess(android.os.Process.myPid());
             System.exit(1);
         });
 
-        init(alarmprofile.getAlarm());
-        TableLayout tableLayout = findViewById(R.id.tableDataAlarm);
+        init(medicationprofile.getMedication());
+        TableLayout tableLayout = findViewById(R.id.tableDataMedication);
         tableLayout.invalidate();
     }
 
-
     @SuppressLint("UseCompatLoadingForDrawables")
-    public void init(Alarm alarmsTable) {
-        TableLayout stk = findViewById(R.id.tableDataAlarm);
-        for (int i = 0; i < alarmsTable.getAlarmsData().size(); i++) {
+    public void init(Medication medicationTable){
+        TableLayout stk = findViewById(R.id.tableDataMedication);
+        for(int i = 0; i < medicationTable.getMedicationData().size(); i++){
             Drawable border;
 
-            if ((i % 2) == 0)
+            if((i % 2) == 0){
                 border = this.getResources().getDrawable(R.drawable.cell_par);
-            else
+            }
+            else{
                 border = this.getResources().getDrawable(R.drawable.cell_impar);
+            }
 
             TableRow tbrow = new TableRow(this);
             TextView t1v = new TextView(this);
-            t1v.setText(alarmsTable.getAlarmsData().get(i).getMedicineName());
+            t1v.setText(medicationTable.getMedicationData().get(i).getName());
             t1v.setTextColor(getResources().getColor(R.color.black));
             t1v.setTextSize(16);
             t1v.setGravity(Gravity.CENTER);
@@ -82,7 +77,7 @@ public class AlarmActivity extends AppCompatActivity {
             tbrow.addView(t1v);
 
             TextView t2v = new TextView(this);
-            t2v.setText(alarmsTable.getAlarmsData().get(i).getDescription());
+            t2v.setText(medicationTable.getMedicationData().get(i).getHours());
             t2v.setTextColor(getResources().getColor(R.color.black));
             t2v.setTextSize(16);
             t2v.setGravity(Gravity.CENTER);
@@ -91,7 +86,7 @@ public class AlarmActivity extends AppCompatActivity {
             tbrow.addView(t2v);
 
             TextView t3v = new TextView(this);
-            t3v.setText(alarmsTable.getAlarmsData().get(i).getSetTime());
+            t3v.setText(medicationTable.getMedicationData().get(i).getNext_take());
             t3v.setTextColor(getResources().getColor(R.color.black));
             t3v.setTextSize(16);
             t3v.setGravity(Gravity.CENTER);
@@ -105,13 +100,13 @@ public class AlarmActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
-            Intent myIntent = new Intent(AlarmActivity.this, MainActivity.class);
-            myIntent.putExtra(getString(R.string.alarm), alarmprofile);
-            AlarmActivity.this.startActivity(myIntent);
+            Intent myIntent = new Intent(MedicationActivity.this, MainActivity.class);
+            myIntent.putExtra(getString(R.string.medication_key), medicationprofile);
+            MedicationActivity.this.startActivity(myIntent);
             finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
+

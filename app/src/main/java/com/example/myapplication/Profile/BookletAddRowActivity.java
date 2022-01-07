@@ -20,7 +20,7 @@ public class BookletAddRowActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_row_booklet);
+        setContentView(R.layout.activity_booklet_add_row);
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) {

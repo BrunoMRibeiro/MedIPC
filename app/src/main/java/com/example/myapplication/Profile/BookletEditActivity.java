@@ -26,7 +26,7 @@ public class BookletEditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_booklet);
+        setContentView(R.layout.activity_booklet_edit);
 
         editTexts = new ArrayList<>();
         ActionBar ab = getSupportActionBar();

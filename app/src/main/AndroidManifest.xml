@@ -89,6 +89,33 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Alarms.AlarmEditActivity" />
         </activity>
+
+        <activity
+            android:name=".Medication.MedicationActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".Medication.MedicationEditActivity"
+            android:exported="true"
+            android:parentActivityName=".Medication.MedicationActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Medication.MedicationActivity" />
+        </activity>
+
+        <activity
+            android:name=".Medication.MedicationAddRowActivity"
+            android:exported="true"
+            android:parentActivityName=".Medication.MedicationEditActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Medication.MedicationEditActivity" />
+        </activity>
     </application>
 
 </manifest>
