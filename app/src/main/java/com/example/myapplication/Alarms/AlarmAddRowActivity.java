@@ -2,6 +2,7 @@ package com.example.myapplication.Alarms;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.AlarmClock;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -34,10 +35,26 @@ public class AlarmAddRowActivity extends AppCompatActivity {
         Button aEdit = findViewById(R.id.btDoneAAR);
         aEdit.setOnClickListener(v -> {
             if(verifyEditTexts()){
-                Intent myIntent = new Intent(AlarmAddRowActivity.this, AlarmEditActivity.class);
-                myIntent.putExtra(getString(R.string.alarm), alarmprofile);
-                AlarmAddRowActivity.this.startActivity(myIntent);
-                finish();
+
+                    Intent myIntent = new Intent(AlarmAddRowActivity.this, AlarmEditActivity.class);
+                    myIntent.putExtra(getString(R.string.alarm), alarmprofile);
+                    AlarmAddRowActivity.this.startActivity(myIntent);
+
+                    EditText setTime = (EditText)findViewById(R.id.etSetTimeAAR);
+                    String tempo = (setTime.getText().toString());
+                    String splitTime[]=tempo.split(":");
+                    String horas=splitTime[0];
+                    String minutos=splitTime[1];
+                    int horas2 = Integer.parseInt(horas);
+                    int minutos2 = Integer.parseInt(minutos);
+                    Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
+                    intent.putExtra(AlarmClock.EXTRA_HOUR,horas2);
+                    intent.putExtra(AlarmClock.EXTRA_MINUTES,minutos2);
+                    if(horas2 <= 24 && minutos2 <= 60) {
+                        startActivity(intent);
+                    }
+
+                    finish();
             }
 
         });
