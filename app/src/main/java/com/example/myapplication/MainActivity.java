@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,13 @@ import com.example.myapplication.Medication.MedicationActivity;
 import com.example.myapplication.Medication.MedicationProfile;
 import com.example.myapplication.Profile.Profile;
 import com.example.myapplication.Profile.ProfileActivity;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.StreamCorruptedException;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -57,6 +65,30 @@ public class MainActivity extends AppCompatActivity {
             myIntent.putExtra(getString(R.string.medication_key), medicationProfile);
             MainActivity.this.startActivity(myIntent);
         });
+
+        read();
+    }
+
+    public void read(){
+        ObjectInputStream input;
+        String filename = "teste2.srl";
+
+        try {
+            input = new ObjectInputStream(new FileInputStream(new File(new File(getFilesDir(),"")+File.separator+filename)));
+            profile = (Profile) input.readObject();
+            Log.v("serialization","Person a="+profile.getName());
+            Log.i("book", getFilesDir().getAbsolutePath());
+            input.close();
+        } catch (StreamCorruptedException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 

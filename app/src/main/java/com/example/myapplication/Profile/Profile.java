@@ -4,7 +4,7 @@ package com.example.myapplication.Profile;
 import java.io.Serializable;
 
 public class Profile implements Serializable {
-    private final Booklet booklet = new Booklet();
+    private Booklet booklet = new Booklet();
     private String name = "";
     private int age;
     private String sex = "";

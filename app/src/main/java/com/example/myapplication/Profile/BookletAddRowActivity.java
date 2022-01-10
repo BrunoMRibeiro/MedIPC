@@ -1,8 +1,11 @@
 package com.example.myapplication.Profile;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +16,15 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 
 public class BookletAddRowActivity extends AppCompatActivity {
     private Profile profile;
@@ -33,6 +45,12 @@ public class BookletAddRowActivity extends AppCompatActivity {
 
         Button bEdit = findViewById(R.id.btDoneBAR);
         bEdit.setOnClickListener(v -> {
+
+
+
+            String Ficheiro = "Teste.txt";
+
+
             if(verifyEditTexts()){
                 Intent myIntent = new Intent(BookletAddRowActivity.this, BookletEditActivity.class);
                 myIntent.putExtra(getString(R.string.profile), profile);

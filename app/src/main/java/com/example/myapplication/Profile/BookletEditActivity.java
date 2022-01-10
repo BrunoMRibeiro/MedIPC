@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -16,6 +17,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class BookletEditActivity extends AppCompatActivity {
@@ -48,6 +55,25 @@ public class BookletEditActivity extends AppCompatActivity {
         Button btDone = findViewById(R.id.btDoneBE);
         btDone.setOnClickListener(v -> {
             updateData();
+
+
+            Log.i("book", getFilesDir().getAbsolutePath());
+
+            String filename = "teste2.srl";
+            ObjectOutput out = null;
+
+            try {
+                out = new ObjectOutputStream(new FileOutputStream(new File(getFilesDir(),"")+File.separator+filename));
+                out.writeObject(profile);
+                out.close();
+                Log.i("book", getFilesDir().getAbsolutePath());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
             Intent myIntent = new Intent(BookletEditActivity.this, BookletActivity.class);
             myIntent.putExtra(getString(R.string.profile), profile);
             BookletEditActivity.this.startActivity(myIntent);
