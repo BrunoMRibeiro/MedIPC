@@ -208,15 +208,17 @@
                     android:gravity="center"
                     android:textColor="@color/black"
                     tools:ignore="Autofill,LabelFor,TextFields" />
+
                 <EditText
                     android:id="@+id/etSetTimeAAR"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:text=""
-                    android:layout_margin="1dp"
                     android:layout_column="1"
+                    android:layout_margin="1dp"
                     android:background="@color/white"
                     android:gravity="center"
+                    android:inputType="time"
+                    android:text=""
                     android:textColor="@color/black"
                     tools:ignore="Autofill,LabelFor,TextFields" />
             </TableRow>

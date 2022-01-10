@@ -1,5 +1,6 @@
 package com.example.myapplication.Alarms;
 
+import android.app.AlarmManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.AlarmClock;
@@ -41,6 +42,11 @@ public class AlarmAddRowActivity extends AppCompatActivity {
                     AlarmAddRowActivity.this.startActivity(myIntent);
 
                     EditText setTime = (EditText)findViewById(R.id.etSetTimeAAR);
+                    EditText medicine = (EditText)findViewById(R.id.etMedicineAAR);
+                    EditText description = (EditText)findViewById(R.id.etDescriptionAAR);
+                    String medicamento = (medicine.getText().toString());
+                    String descricao = (description.getText().toString());
+                    String mensagem = medicamento + "(" + descricao + ")";
                     String tempo = (setTime.getText().toString());
                     String splitTime[]=tempo.split(":");
                     String horas=splitTime[0];
@@ -50,6 +56,7 @@ public class AlarmAddRowActivity extends AppCompatActivity {
                     Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
                     intent.putExtra(AlarmClock.EXTRA_HOUR,horas2);
                     intent.putExtra(AlarmClock.EXTRA_MINUTES,minutos2);
+                    intent.putExtra(AlarmClock.EXTRA_MESSAGE,mensagem);
                     if(horas2 <= 24 && minutos2 <= 60) {
                         startActivity(intent);
                     }
