@@ -16,6 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class MedicationEditActivity extends AppCompatActivity {
@@ -49,6 +55,20 @@ public class MedicationEditActivity extends AppCompatActivity {
         Button btDone = findViewById(R.id.btDoneME);
         btDone.setOnClickListener(v -> {
             updateData();
+
+            String filename = "medication.srl";
+            ObjectOutput out = null;
+
+            try {
+                out = new ObjectOutputStream(new FileOutputStream(new File(getFilesDir(),"")+File.separator+filename));
+                out.writeObject(medicationProfile);
+                out.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             Intent myIntent = new Intent(MedicationEditActivity.this, MedicationActivity.class);
             myIntent.putExtra(getString(R.string.medication_key), medicationProfile);
             MedicationEditActivity.this.startActivity(myIntent);

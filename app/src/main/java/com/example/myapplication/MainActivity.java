@@ -10,6 +10,9 @@ import android.widget.Button;
 
 import com.example.myapplication.Alarms.AlarmActivity;
 import com.example.myapplication.Alarms.AlarmProfile;
+import com.example.myapplication.Appointment.Appointment;
+import com.example.myapplication.Appointment.AppointmentActivity;
+import com.example.myapplication.Appointment.AppointmentProfile;
 import com.example.myapplication.Medication.MedicationActivity;
 import com.example.myapplication.Medication.MedicationProfile;
 import com.example.myapplication.Profile.Profile;
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private Profile profile;
     private AlarmProfile alarmprofile;
     private MedicationProfile medicationProfile;
+    private AppointmentProfile appointmentProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         profile = new Profile();
         alarmprofile = new AlarmProfile();
         medicationProfile = new MedicationProfile();
+        appointmentProfile = new AppointmentProfile();
 
         if(getIntent().getSerializableExtra(getString(R.string.profile)) != null)
             profile = (Profile)getIntent().getSerializableExtra(getString(R.string.profile));
@@ -46,9 +51,14 @@ public class MainActivity extends AppCompatActivity {
         if(getIntent().getSerializableExtra(getString(R.string.medication_key)) != null)
             medicationProfile = (MedicationProfile) getIntent().getSerializableExtra(getString(R.string.medication_key));
 
+        if(getIntent().getSerializableExtra(getString(R.string.appointment_key)) != null)
+            appointmentProfile = (AppointmentProfile) getIntent().getSerializableExtra(getString(R.string.appointment_key));
+
+
         Button button = findViewById(R.id.btProfile);
         Button button2 = findViewById(R.id.btAlarm);
         Button button3 = findViewById(R.id.btMedication);
+        Button button4 = findViewById(R.id.btAppointment);
 
         button.setOnClickListener(v -> {
             Intent myIntent = new Intent(MainActivity.this, ProfileActivity.class);
@@ -66,18 +76,26 @@ public class MainActivity extends AppCompatActivity {
             MainActivity.this.startActivity(myIntent);
         });
 
-        read();
+        button4.setOnClickListener(v -> {
+            Intent myIntent = new Intent(MainActivity.this, AppointmentActivity.class);
+            myIntent.putExtra(getString(R.string.appointment_key), appointmentProfile);
+            MainActivity.this.startActivity(myIntent);
+        });
+
+        readProfile();
+        readAlarmProfile();
+        readMedicationProfile();
+        readAppointmentProfile();
+
     }
 
-    public void read(){
+    public void readProfile(){
         ObjectInputStream input;
-        String filename = "teste2.srl";
+        String filename = "profile.srl";
 
         try {
             input = new ObjectInputStream(new FileInputStream(new File(new File(getFilesDir(),"")+File.separator+filename)));
             profile = (Profile) input.readObject();
-            Log.v("serialization","Person a="+profile.getName());
-            Log.i("book", getFilesDir().getAbsolutePath());
             input.close();
         } catch (StreamCorruptedException e) {
             e.printStackTrace();
@@ -88,7 +106,63 @@ public class MainActivity extends AppCompatActivity {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
 
+    public void readAlarmProfile(){
+        ObjectInputStream input;
+        String filename = "alarm.srl";
+
+        try {
+            input = new ObjectInputStream(new FileInputStream(new File(new File(getFilesDir(),"")+File.separator+filename)));
+            alarmprofile = (AlarmProfile) input.readObject();
+            input.close();
+        } catch (StreamCorruptedException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void readMedicationProfile(){
+        ObjectInputStream input;
+        String filename = "medication.srl";
+
+        try {
+            input = new ObjectInputStream(new FileInputStream(new File(new File(getFilesDir(),"")+File.separator+filename)));
+            medicationProfile = (MedicationProfile) input.readObject();
+            input.close();
+        } catch (StreamCorruptedException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void readAppointmentProfile(){
+        ObjectInputStream input;
+        String filename = "appointment.srl";
+
+        try {
+            input = new ObjectInputStream(new FileInputStream(new File(new File(getFilesDir(),"")+File.separator+filename)));
+            appointmentProfile = (AppointmentProfile) input.readObject();
+            input.close();
+        } catch (StreamCorruptedException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
 

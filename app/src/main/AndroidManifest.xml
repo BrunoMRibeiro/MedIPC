@@ -120,6 +120,34 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Medication.MedicationEditActivity" />
         </activity>
+
+        <activity
+            android:name=".Appointment.AppointmentActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".Appointment.AppointmentEditActivity"
+            android:exported="true"
+            android:parentActivityName=".Appointment.AppointmentActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Appointment.AppointmentActivity" />
+        </activity>
+
+        <activity
+            android:name=".Appointment.AppointmentAddRowActivity"
+            android:exported="true"
+            android:parentActivityName=".Appointment.AppointmentEditActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Appointment.AppointmentActivity" />
+        </activity>
+
     </application>
 
 </manifest>

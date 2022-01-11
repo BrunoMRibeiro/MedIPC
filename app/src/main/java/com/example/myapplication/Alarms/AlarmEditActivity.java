@@ -16,6 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class AlarmEditActivity extends AppCompatActivity {
@@ -48,6 +54,20 @@ public class AlarmEditActivity extends AppCompatActivity {
         Button btDone = findViewById(R.id.btDoneAE);
         btDone.setOnClickListener(v -> {
             updateData();
+
+            String filename = "alarm.srl";
+            ObjectOutput out = null;
+
+            try {
+                out = new ObjectOutputStream(new FileOutputStream(new File(getFilesDir(),"")+File.separator+filename));
+                out.writeObject(alarmprofile);
+                out.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             Intent myIntent = new Intent(AlarmEditActivity.this, AlarmActivity.class);
             myIntent.putExtra(getString(R.string.alarm), alarmprofile);
             AlarmEditActivity.this.startActivity(myIntent);

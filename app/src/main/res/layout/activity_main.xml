@@ -61,6 +61,18 @@
             android:text="Medication"
             android:textAllCaps="false"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <Button
+            android:id="@+id/btAppointment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Appointment"
+            android:textAllCaps="false"/>
+    </LinearLayout>
 
 
 </LinearLayout>

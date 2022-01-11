@@ -37,4 +37,6 @@
     <string name="description">Description</string>
     <string name="set_time">Set Time</string>
     <string name="medication_key">medication</string>
+    <string name="appointment_key">appointment</string>
+    <string name="need_to_incert_appointment_info">need to incert appointment info</string>
 </resources>
