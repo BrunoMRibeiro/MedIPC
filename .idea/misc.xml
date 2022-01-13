@@ -4,11 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/GPS/Project/MedIPC/app/src/main/res/layout/activity_alarm.xml" value="0.25416666666666665" />
-        <entry key="..\:/GPS/Project/MedIPC/app/src/main/res/layout/activity_alarm_add_row.xml" value="0.4" />
+        <entry key="..\:/GPS/Project/MedIPC/app/src/main/res/layout/activity_alarm_add_row.xml" value="0.264" />
         <entry key="..\:/GPS/Project/MedIPC/app/src/main/res/layout/activity_alarm_edit.xml" value="0.25416666666666665" />
-        <entry key="..\:/GPS/Project/MedIPC/app/src/main/res/layout/activity_appointment.xml" value="0.2" />
-        <entry key="..\:/GPS/Project/MedIPC/app/src/main/res/layout/activity_appointment_add_row.xml" value="0.264" />
-        <entry key="..\:/GPS/Project/MedIPC/app/src/main/res/layout/activity_appointment_edit.xml" value="0.15885416666666666" />
         <entry key="..\:/GPS/Project/MedIPC/app/src/main/res/layout/activity_booklet.xml" value="0.2" />
         <entry key="..\:/GPS/Project/MedIPC/app/src/main/res/layout/activity_booklet_add_row.xml" value="0.16" />
         <entry key="..\:/GPS/Project/MedIPC/app/src/main/res/layout/activity_booklet_edit.xml" value="0.264" />
@@ -27,9 +24,12 @@
         <entry key="..\:/MedIPC/app/src/main/res/layout/activity_add_row_alarm.xml" value="0.176" />
         <entry key="..\:/MedIPC/app/src/main/res/layout/activity_add_row_booklet.xml" value="0.15172101449275363" />
         <entry key="..\:/MedIPC/app/src/main/res/layout/activity_alarm.xml" value="0.264" />
+        <entry key="..\:/MedIPC/app/src/main/res/layout/activity_alarm_add_row.xml" value="0.14447463768115942" />
+        <entry key="..\:/MedIPC/app/src/main/res/layout/activity_alarm_edit.xml" value="0.14447463768115942" />
         <entry key="..\:/MedIPC/app/src/main/res/layout/activity_booklet.xml" value="0.15172101449275363" />
         <entry key="..\:/MedIPC/app/src/main/res/layout/activity_edit_alarm.xml" value="0.264" />
         <entry key="..\:/MedIPC/app/src/main/res/layout/activity_edit_booklet.xml" value="0.15172101449275363" />
+        <entry key="..\:/MedIPC/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/MedIPC/app/src/main/res/layout/activity_main.xml" value="0.176" />
         <entry key="..\:/MedIPC/app/src/main/res/layout/activity_profile.xml" value="0.1" />
         <entry key="..\:/MedIPC/app/src/main/res/layout/activity_profile_edit.xml" value="0.15172101449275363" />
