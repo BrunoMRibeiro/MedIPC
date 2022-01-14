@@ -52,6 +52,13 @@ public class BookletEditActivity extends AppCompatActivity {
             BookletEditActivity.this.startActivity(myIntent);
         });
 
+        Button btDelRow = findViewById(R.id.btDelColuBE);
+        btDelRow.setOnClickListener(v -> {
+            Intent myIntent = new Intent(BookletEditActivity.this, BookletDelRowActivity.class);
+            myIntent.putExtra(getString(R.string.profile), profile);
+            BookletEditActivity.this.startActivity(myIntent);
+        });
+
         Button btDone = findViewById(R.id.btDoneBE);
         btDone.setOnClickListener(v -> {
             updateData();
@@ -126,13 +133,13 @@ public class BookletEditActivity extends AppCompatActivity {
     }
 
     public void  updateData() {
-        ArrayList<VaccineData> vacinnes = new ArrayList<>();
+        ArrayList<VaccineData> vaccines = new ArrayList<>();
 
         for(int i = 0; i < editTexts.size(); i+=2){
             VaccineData vaccineData = new VaccineData(editTexts.get(i).getText().toString(), editTexts.get(i+1).getText().toString());
-            vacinnes.add(vaccineData);
+            vaccines.add(vaccineData);
         }
-        profile.getBooklet().setVaccinesData(vacinnes);
+        profile.getBooklet().setVaccinesData(vaccines);
     }
 
 

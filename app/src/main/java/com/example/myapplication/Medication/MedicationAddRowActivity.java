@@ -14,6 +14,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+
 public class MedicationAddRowActivity extends AppCompatActivity {
     private MedicationProfile medicationProfile;
 
@@ -33,6 +40,20 @@ public class MedicationAddRowActivity extends AppCompatActivity {
 
         Button aEdit = findViewById(R.id.btDoneARM);
         aEdit.setOnClickListener(v -> {
+
+            String filename = "medication.srl";
+            ObjectOutput out = null;
+
+            try {
+                out = new ObjectOutputStream(new FileOutputStream(new File(getFilesDir(),"")+File.separator+filename));
+                out.writeObject(medicationProfile);
+                out.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             if(verifyEditTexts()){
                 Intent myIntent = new Intent(MedicationAddRowActivity.this, MedicationEditActivity.class);
                 myIntent.putExtra(getString(R.string.medication_key), medicationProfile);
@@ -76,9 +97,9 @@ public class MedicationAddRowActivity extends AppCompatActivity {
         nextTake = etNextTake.getText().toString();
 
 
-        if((TextUtils.isEmpty(name) && TextUtils.isEmpty(name)) || (TextUtils.isEmpty(name) && (!TextUtils.isEmpty(name)))) {
+        if(TextUtils.isEmpty(name) || TextUtils.isEmpty(hours) || TextUtils.isEmpty(nextTake)) {
             Toast.makeText(this,
-                    R.string.need_to_incert_medicine_name,
+                    "Need to insert all Medication data",
                     Toast.LENGTH_SHORT).show();
             return false;
         }

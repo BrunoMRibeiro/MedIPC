@@ -115,12 +115,11 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="start"
+        android:layout_gravity="center"
         android:orientation="horizontal"
-        android:paddingStart="20dp"
-        tools:ignore="RtlSymmetry">
+        android:gravity="center">
 
         <Button
             android:id="@+id/btAddColuBE"
@@ -129,15 +128,22 @@
             android:layout_height="wrap_content"
             android:text="@string/add_table_line"
             android:backgroundTint="@color/white"
-            android:textColor="@color/black"
-            tools:ignore="RtlHardcoded" />
+            android:textColor="@color/black"/>
+        <Button
+            android:id="@+id/btDelColuBE"
+            android:drawableLeft="@drawable/booklet_del_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remove vaccine"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:layout_gravity="end">
+        android:layout_gravity="center">
 
         <Button
             android:id="@+id/btDoneBE"
@@ -145,7 +151,7 @@
             android:layout_height="wrap_content"
             android:text="@string/done"
             android:layout_gravity="center"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="@color/green"
             android:layout_marginRight="20dp"
             tools:ignore="RtlHardcoded" />
     </LinearLayout>

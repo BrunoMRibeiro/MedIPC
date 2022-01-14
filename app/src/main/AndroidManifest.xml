@@ -72,6 +72,15 @@
         </activity>
 
         <activity
+            android:name=".Profile.BookletDelRowActivity"
+            android:exported="true"
+            android:parentActivityName=".Profile.BookletEditActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Profile.BookletEditActivity" />
+        </activity>
+
+        <activity
             android:name=".Alarms.AlarmActivity"
             android:exported="true"
             android:parentActivityName=".MainActivity">
@@ -91,6 +100,15 @@
 
         <activity
             android:name=".Alarms.AlarmAddRowActivity"
+            android:exported="true"
+            android:parentActivityName=".Alarms.AlarmEditActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Alarms.AlarmEditActivity" />
+        </activity>
+
+        <activity
+            android:name=".Alarms.AlarmDelRowActivity"
             android:exported="true"
             android:parentActivityName=".Alarms.AlarmEditActivity">
             <meta-data
@@ -126,6 +144,15 @@
         </activity>
 
         <activity
+            android:name=".Medication.MedicationDelRowActivity"
+            android:exported="true"
+            android:parentActivityName=".Medication.MedicationEditActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Medication.MedicationEditActivity" />
+        </activity>
+
+        <activity
             android:name=".Appointment.AppointmentActivity"
             android:exported="true"
             android:parentActivityName=".MainActivity">
@@ -145,6 +172,15 @@
 
         <activity
             android:name=".Appointment.AppointmentAddRowActivity"
+            android:exported="true"
+            android:parentActivityName=".Appointment.AppointmentEditActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Appointment.AppointmentActivity" />
+        </activity>
+
+        <activity
+            android:name=".Appointment.AppointmentDelRowActivity"
             android:exported="true"
             android:parentActivityName=".Appointment.AppointmentEditActivity">
             <meta-data

@@ -170,9 +170,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="start"
+        android:layout_gravity="center"
         android:orientation="horizontal"
-        android:paddingStart="20dp"
         tools:ignore="RtlSymmetry">
 
         <Button
@@ -180,7 +179,18 @@
             android:drawableLeft="@drawable/booklet_add_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Medication"
+            android:text="Add Appointment"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:id="@+id/btDelAppointment"
+            android:drawableLeft="@drawable/booklet_del_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Del Appointment"
             android:backgroundTint="@color/white"
             android:textColor="@color/black"
             android:layout_marginTop="20dp"
@@ -191,7 +201,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:layout_gravity="end">
+        android:layout_gravity="center">
 
         <Button
             android:id="@+id/btDoneAPE"
@@ -199,7 +209,7 @@
             android:layout_height="wrap_content"
             android:text="@string/done"
             android:layout_gravity="center"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="@color/green"
             android:layout_marginRight="20dp"
             tools:ignore="RtlHardcoded" />
     </LinearLayout>

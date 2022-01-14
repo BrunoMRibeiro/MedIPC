@@ -52,6 +52,13 @@ public class MedicationEditActivity extends AppCompatActivity {
             MedicationEditActivity.this.startActivity(myIntent);
         });
 
+        Button btDelRow = findViewById(R.id.btDelMedication);
+        btDelRow.setOnClickListener(v -> {
+            Intent myIntent = new Intent(MedicationEditActivity.this, MedicationDelRowActivity.class);
+            myIntent.putExtra(getString(R.string.medication_key), medicationProfile);
+            MedicationEditActivity.this.startActivity(myIntent);
+        });
+
         Button btDone = findViewById(R.id.btDoneME);
         btDone.setOnClickListener(v -> {
             updateData();

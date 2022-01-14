@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Profile.ProfileActivity"
+    tools:context=".Medication.MedicationEditActivity"
     android:orientation="vertical">
 
     <LinearLayout
@@ -181,10 +181,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:orientation="horizontal"
-        android:paddingStart="20dp"
-        tools:ignore="RtlSymmetry">
+        android:layout_gravity="center"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btAddMedication"
@@ -196,13 +194,23 @@
             android:textColor="@color/black"
             android:layout_marginTop="20dp"
             tools:ignore="RtlHardcoded" />
+        <Button
+            android:id="@+id/btDelMedication"
+            android:drawableLeft="@drawable/booklet_del_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remove Medication"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            tools:ignore="RtlHardcoded" />
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:layout_gravity="end">
+        android:layout_gravity="center">
 
         <Button
             android:id="@+id/btDoneME"
@@ -210,7 +218,7 @@
             android:layout_height="wrap_content"
             android:text="@string/done"
             android:layout_gravity="center"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="@color/green"
             android:layout_marginRight="20dp"
             tools:ignore="RtlHardcoded" />
     </LinearLayout>
