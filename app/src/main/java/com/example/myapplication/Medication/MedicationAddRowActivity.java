@@ -14,6 +14,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+
 public class MedicationAddRowActivity extends AppCompatActivity {
     private MedicationProfile medicationProfile;
 
@@ -33,6 +40,20 @@ public class MedicationAddRowActivity extends AppCompatActivity {
 
         Button aEdit = findViewById(R.id.btDoneARM);
         aEdit.setOnClickListener(v -> {
+
+            String filename = "medication.srl";
+            ObjectOutput out = null;
+
+            try {
+                out = new ObjectOutputStream(new FileOutputStream(new File(getFilesDir(),"")+File.separator+filename));
+                out.writeObject(medicationProfile);
+                out.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             if(verifyEditTexts()){
                 Intent myIntent = new Intent(MedicationAddRowActivity.this, MedicationEditActivity.class);
                 myIntent.putExtra(getString(R.string.medication_key), medicationProfile);
@@ -65,16 +86,37 @@ public class MedicationAddRowActivity extends AppCompatActivity {
         String name;
         String hours;
         String nextTake;
+        String nextTake1;
+        String hours2;
 
         EditText etName = findViewById(R.id.MedicationARM);
         name = etName.getText().toString();
 
         EditText etHours = findViewById(R.id.HoursARM);
-        hours = etHours.getText().toString();
+        hours2 = etHours.getText().toString();
+        int intervalo = Integer.parseInt(hours2);
+
 
         EditText etNextTake = findViewById(R.id.NextTakeARM);
-        nextTake = etNextTake.getText().toString();
+        nextTake1 = etNextTake.getText().toString();
+        String splitTime[]=nextTake1.split(":");
+        String nexttake2=splitTime[0];
+        String nexttake3=splitTime[1];
+        int horas = Integer.parseInt(nexttake2);
+        int minutos = Integer.parseInt(nexttake3);
+        if(horas <= 23 && horas >= 0 && minutos <= 59 && minutos >= 0 && intervalo<= 23 && intervalo >= 0){
+            nextTake = nexttake2 + "h:" + nexttake3 + "m";
+            hours = hours2 + "h - " + hours2 + "h";
+            MedicationData medicationData = new MedicationData(name, hours, nextTake);
+            medicationProfile.getMedication().getMedicationData().add(medicationData);
 
+
+        }
+        else{
+            Toast.makeText(this,
+                    R.string.error_with_med_data,
+                    Toast.LENGTH_SHORT).show();
+        }
 
         if((TextUtils.isEmpty(name) && TextUtils.isEmpty(name)) || (TextUtils.isEmpty(name) && (!TextUtils.isEmpty(name)))) {
             Toast.makeText(this,
@@ -82,9 +124,6 @@ public class MedicationAddRowActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
             return false;
         }
-
-        MedicationData medicationData = new MedicationData(name, hours, nextTake);
-        medicationProfile.getMedication().getMedicationData().add(medicationData);
         return true;
     }
 
