@@ -8,9 +8,18 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableLayout;
+import android.widget.Toast;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.R;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 
 public class ProfileActivityEdit extends AppCompatActivity {
     private Profile profile;
@@ -32,6 +41,23 @@ public class ProfileActivityEdit extends AppCompatActivity {
         Button button = findViewById(R.id.btDonePE);
 
         button.setOnClickListener(v -> {
+            if (profile.getAge() < 0 || profile.getAge() > 100){
+                Toast.makeText(this, "Insira uma idade entre 0 e 100", Toast.LENGTH_SHORT).show();
+            }
+
+            String filename = "profile.srl";
+            ObjectOutput out = null;
+
+            try {
+                out = new ObjectOutputStream(new FileOutputStream(new File(getFilesDir(),"")+File.separator+filename));
+                out.writeObject(profile);
+                out.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             Intent myIntent = new Intent(ProfileActivityEdit.this, ProfileActivity.class);
             myIntent.putExtra(getString(R.string.profile), profile);
             ProfileActivityEdit.this.startActivity(myIntent);
@@ -125,7 +151,7 @@ public class ProfileActivityEdit extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 try {
-                    profile.setHeight(Integer.parseInt(editable.toString()));
+                    profile.setHeight(Float.parseFloat(editable.toString()));
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }
@@ -146,7 +172,7 @@ public class ProfileActivityEdit extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 try {
-                    profile.setWeight(Integer.parseInt(editable.toString()));
+                    profile.setWeight(Float.parseFloat(editable.toString()));
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }

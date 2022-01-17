@@ -17,6 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 
+import java.io.File;
+import java.util.Scanner;
+
 public class MedicationActivity extends AppCompatActivity {
     private MedicationProfile medicationprofile;
 
@@ -47,6 +50,11 @@ public class MedicationActivity extends AppCompatActivity {
             android.os.Process.killProcess(android.os.Process.myPid());
             System.exit(1);
         });
+
+      /*  Button btCheckHistoryM = findViewById(R.id.HistoryMA);
+        btCheckHistoryM.setOnClickListener(v -> {
+            openFile();
+        });*/
 
         init(medicationprofile.getMedication());
         TableLayout tableLayout = findViewById(R.id.tableDataMedication);
@@ -107,6 +115,29 @@ public class MedicationActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private Scanner x;
+
+    public void openFile(){
+        try{
+            x = new Scanner(new File("HistoricoMed.txt"));
+        }
+        catch(Exception e){
+            System.out.println("File could not be found");
+        }
+        readFile();
+    }
+
+    public void readFile(){
+        while(x.hasNext()){
+            String a = x.next();
+            String b = x.next();
+            String c = x.next();
+
+            MedicationData medicationData = new MedicationData(a, b, c);
+            medicationprofile.getMedication().getMedicationData().add(medicationData);
+        }
     }
 }
 
