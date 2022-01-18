@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Appointment.AppointmentAddRowActivity"
+    tools:context=".Medication.MedicationDelRowActivity"
     android:orientation="vertical">
 
     <LinearLayout
@@ -22,7 +22,7 @@
             android:gravity="end">
 
             <Button
-                android:id="@+id/LogOutARAp"
+                android:id="@+id/LogOutDRM"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:backgroundTint="@color/white"
@@ -78,7 +78,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:id="@+id/opcao1"
-                android:background="#A9A9A9"
+                android:background="@color/white"
                 android:layout_marginStart="1dp"
                 android:layout_marginVertical="1dp"
                 android:textColor="@color/black"
@@ -92,7 +92,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:id="@+id/opcao2"
-                android:background="@color/white"
+                android:background="#A9A9A9"
                 android:layout_marginStart="1dp"
                 android:layout_marginVertical="1dp"
                 android:textColor="@color/black"
@@ -120,10 +120,10 @@
         android:padding="20dp">
 
         <TableLayout
-            android:id="@+id/tableDataAppointmentARM"
+            android:id="@+id/tableDataMedicationDRM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:stretchColumns="0,1,2"
+            android:stretchColumns="0,1"
             android:gravity="center"
             android:background="@color/black"
             tools:ignore="UselessParent">
@@ -137,24 +137,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:text="Appointment Info"
+                    android:text="Medicine"
                     android:layout_margin="1dp"
                     android:layout_column="0"
                     android:background="@color/tableTop"
                     android:textStyle="bold"
                     android:gravity="center"
-                    android:textColor="@color/black"
-                    />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="Date"
-                    android:layout_margin="1dp"
-                    android:layout_column="1"
-                    android:background="@color/tableTop"
-                    android:gravity="center"
-                    android:textStyle="bold"
                     android:textColor="@color/black"
                     />
             </TableRow>
@@ -165,7 +153,7 @@
                 android:layout_margin="1dp"
                 android:layout_weight="1">
                 <EditText
-                    android:id="@+id/AppointmentARM"
+                    android:id="@+id/etMedicationDRM"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:text=""
@@ -174,23 +162,10 @@
                     android:background="@color/white"
                     android:gravity="center"
                     android:textColor="@color/black"
-                    android:importantForAutofill="no"
-                    tools:ignore="LabelFor,TextFields" />
-                <EditText
-                    android:id="@+id/DateARAp"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text=""
-                    android:layout_margin="1dp"
-                    android:layout_column="1"
-                    android:background="@color/white"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    tools:ignore="Autofill,LabelFor,TextFields" />
+                    android:importantForAutofill="no"/>
             </TableRow>
         </TableLayout>
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -199,7 +174,7 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/btCancelARAp"
+            android:id="@+id/btCancelDRM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cancel"
@@ -209,7 +184,7 @@
             tools:ignore="ButtonStyle" />
 
         <Button
-            android:id="@+id/btDoneARAp"
+            android:id="@+id/btDoneDRM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/done"

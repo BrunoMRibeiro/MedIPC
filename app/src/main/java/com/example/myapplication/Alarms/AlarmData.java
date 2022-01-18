@@ -3,22 +3,22 @@ package com.example.myapplication.Alarms;
 import java.io.Serializable;
 
 public class AlarmData implements Serializable {
-    private String medicineName;
+    private String name;
     private String description;
     private String setTime;
 
-    public AlarmData(String medicineName, String description, String setTime) {
-        this.medicineName = medicineName;
+    public AlarmData(String name, String description, String setTime) {
+        this.name = name;
         this.description = description;
         this.setTime = setTime;
     }
 
-    public String getMedicineName() {
-        return medicineName;
+    public String getName() {
+        return name;
     }
 
-    public void setMedicineName(String medicineName) {
-        this.medicineName = medicineName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {

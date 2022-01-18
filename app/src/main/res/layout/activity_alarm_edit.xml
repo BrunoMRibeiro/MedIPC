@@ -195,7 +195,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="start"
+        android:layout_gravity="center"
         android:orientation="horizontal"
         android:paddingStart="20dp"
         tools:ignore="RtlSymmetry">
@@ -210,12 +210,21 @@
             android:textColor="@color/black"
             tools:ignore="RtlHardcoded" />
 
+        <Button
+            android:id="@+id/btDelColAlarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/booklet_del_row"
+            android:text="Remove alarm"
+            android:textColor="@color/black" />
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:layout_gravity="end">
+        android:layout_gravity="center">
 
         <Button
             android:id="@+id/btDoneAE"
@@ -223,7 +232,7 @@
             android:layout_height="wrap_content"
             android:text="@string/done"
             android:layout_gravity="center"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="@color/green"
             android:layout_marginRight="20dp"
             tools:ignore="RtlHardcoded" />
     </LinearLayout>

@@ -31,17 +31,9 @@ public class BookletActivity extends AppCompatActivity {
         if(getIntent().getSerializableExtra(getString(R.string.profile)) != null)
             profile = (Profile)getIntent().getSerializableExtra(getString(R.string.profile));
 
-
         Button bEdit = findViewById(R.id.btEditB);
         bEdit.setOnClickListener(v -> {
             Intent myIntent = new Intent(BookletActivity.this, BookletEditActivity.class);
-            myIntent.putExtra(getString(R.string.profile), profile);
-            BookletActivity.this.startActivity(myIntent);
-        });
-
-        Button bBack = findViewById(R.id.btbackB);
-        bBack.setOnClickListener(v -> {
-            Intent myIntent = new Intent(BookletActivity.this, ProfileActivity.class);
             myIntent.putExtra(getString(R.string.profile), profile);
             BookletActivity.this.startActivity(myIntent);
         });

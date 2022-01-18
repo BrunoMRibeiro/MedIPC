@@ -16,6 +16,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+
 public class AlarmAddRowActivity extends AppCompatActivity {
     private AlarmProfile alarmprofile;
 
@@ -37,10 +44,20 @@ public class AlarmAddRowActivity extends AppCompatActivity {
         aEdit.setOnClickListener(v -> {
             if(verifyEditTexts()){
 
-                    Intent myIntent = new Intent(AlarmAddRowActivity.this, AlarmEditActivity.class);
-                    myIntent.putExtra(getString(R.string.alarm), alarmprofile);
-                    AlarmAddRowActivity.this.startActivity(myIntent);
+                String filename = "alarm.srl";
+                ObjectOutput out = null;
 
+                try {
+                    out = new ObjectOutputStream(new FileOutputStream(new File(getFilesDir(),"")+File.separator+filename));
+                    out.writeObject(alarmprofile);
+                    out.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                try{
                     EditText setTime = (EditText)findViewById(R.id.etSetTimeAAR);
                     EditText medicine = (EditText)findViewById(R.id.etMedicineAAR);
                     EditText description = (EditText)findViewById(R.id.etDescriptionAAR);
@@ -60,8 +77,16 @@ public class AlarmAddRowActivity extends AppCompatActivity {
                     if(horas2 <= 24 && minutos2 <= 60) {
                         startActivity(intent);
                     }
+                }catch (ArrayIndexOutOfBoundsException e){
+                    Toast.makeText(this,
+                            "Need to insert: Hour:Minutes",
+                            Toast.LENGTH_SHORT).show();
+                }
 
-                    finish();
+                Intent myIntent = new Intent(AlarmAddRowActivity.this, AlarmEditActivity.class);
+                myIntent.putExtra(getString(R.string.alarm), alarmprofile);
+                AlarmAddRowActivity.this.startActivity(myIntent);
+                finish();
             }
 
         });
@@ -99,9 +124,8 @@ public class AlarmAddRowActivity extends AppCompatActivity {
         EditText etSetTime = findViewById(R.id.etSetTimeAAR);
         settime = etSetTime.getText().toString();
 
-        if((TextUtils.isEmpty(medicine) && TextUtils.isEmpty(medicine)) || (TextUtils.isEmpty(medicine) && (!TextUtils.isEmpty(medicine)))) {
-            Toast.makeText(this,
-                    R.string.need_to_incert_medicine_name,
+        if(TextUtils.isEmpty(medicine) || TextUtils.isEmpty(description) || TextUtils.isEmpty(settime)) {
+            Toast.makeText(this, "Need to insert all alarm data",
                     Toast.LENGTH_SHORT).show();
             return false;
         }

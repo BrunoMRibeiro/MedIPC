@@ -51,6 +51,13 @@ public class AlarmEditActivity extends AppCompatActivity {
             AlarmEditActivity.this.startActivity(myIntent);
         });
 
+        Button btDelRow = findViewById(R.id.btDelColAlarm);
+        btDelRow.setOnClickListener(v -> {
+            Intent myIntent = new Intent(AlarmEditActivity.this, AlarmDelRowActivity.class);
+            myIntent.putExtra(getString(R.string.alarm), alarmprofile);
+            AlarmEditActivity.this.startActivity(myIntent);
+        });
+
         Button btDone = findViewById(R.id.btDoneAE);
         btDone.setOnClickListener(v -> {
             updateData();
@@ -100,7 +107,7 @@ public class AlarmEditActivity extends AppCompatActivity {
 
             TableRow tbrow = new TableRow(this);
             EditText t1v = new EditText(this);
-            t1v.setText(alarmsTable.getAlarmsData().get(i).getMedicineName());
+            t1v.setText(alarmsTable.getAlarmsData().get(i).getName());
             t1v.setTextColor(getResources().getColor(R.color.black));
             t1v.setTextSize(16);
             t1v.setGravity(Gravity.CENTER);

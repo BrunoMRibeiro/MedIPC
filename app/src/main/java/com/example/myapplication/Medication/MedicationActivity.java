@@ -51,10 +51,10 @@ public class MedicationActivity extends AppCompatActivity {
             System.exit(1);
         });
 
-        Button btCheckHistoryM = findViewById(R.id.HistoryMA);
+      /*  Button btCheckHistoryM = findViewById(R.id.HistoryMA);
         btCheckHistoryM.setOnClickListener(v -> {
             openFile();
-        });
+        });*/
 
         init(medicationprofile.getMedication());
         TableLayout tableLayout = findViewById(R.id.tableDataMedication);

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Profile.BookletAddRowActivity"
+    tools:context=".Profile.BookletDelRowActivity"
     android:orientation="vertical">
 
     <LinearLayout
@@ -22,7 +22,7 @@
             tools:ignore="UselessParent">
 
             <Button
-                android:id="@+id/LogOutBAR"
+                android:id="@+id/LogOutBDR"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:backgroundTint="@color/white"
@@ -46,7 +46,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/add_vaccine"
+        android:text="Remove Vaccine"
         android:textSize="20sp"
         android:gravity="center"
         android:textStyle="bold"
@@ -62,7 +62,7 @@
         android:padding="20dp">
 
         <TableLayout
-            android:id="@+id/tableDataBAR"
+            android:id="@+id/tableDataBDR"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:stretchColumns="0,1"
@@ -88,17 +88,6 @@
                     android:textColor="@color/black"
                     />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/date"
-                    android:layout_margin="1dp"
-                    android:layout_column="1"
-                    android:background="@color/tableTop"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    />
             </TableRow>
 
             <TableRow
@@ -107,7 +96,7 @@
                 android:layout_margin="1dp"
                 android:layout_weight="1">
                 <EditText
-                    android:id="@+id/etVaccineBAR"
+                    android:id="@+id/etVaccineBDR"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:text=""
@@ -116,19 +105,7 @@
                     android:background="@color/white"
                     android:gravity="center"
                     android:textColor="@color/black"
-                    android:importantForAutofill="no"
-                    tools:ignore="LabelFor,TextFields" />
-                <EditText
-                    android:id="@+id/etDateBAR"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text=""
-                    android:layout_margin="1dp"
-                    android:layout_column="1"
-                    android:background="@color/white"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    tools:ignore="Autofill,LabelFor,TextFields" />
+                    android:importantForAutofill="no"/>
             </TableRow>
         </TableLayout>
     </LinearLayout>
@@ -141,7 +118,7 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/btCancelBAR"
+            android:id="@+id/btCancelBDR"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cancel"
@@ -151,7 +128,7 @@
             tools:ignore="ButtonStyle" />
 
         <Button
-            android:id="@+id/btDoneBAR"
+            android:id="@+id/btDoneBDR"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/done"

@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TableLayout;
 import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,14 +18,13 @@ import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 
-
-public class BookletAddRowActivity extends AppCompatActivity {
+public class BookletDelRowActivity extends AppCompatActivity {
     private Profile profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_booklet_add_row);
+        setContentView(R.layout.activity_booklet_del_row);
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
@@ -37,8 +35,8 @@ public class BookletAddRowActivity extends AppCompatActivity {
         if (getIntent().getSerializableExtra(getString(R.string.profile)) != null)
             profile = (Profile) getIntent().getSerializableExtra(getString(R.string.profile));
 
-        Button bEdit = findViewById(R.id.btDoneBAR);
-        bEdit.setOnClickListener(v -> {
+        Button btDone = findViewById(R.id.btDoneBDR);
+        btDone.setOnClickListener(v -> {
 
             String filename = "profile.srl";
             ObjectOutput out = null;
@@ -54,60 +52,57 @@ public class BookletAddRowActivity extends AppCompatActivity {
             }
 
             if(verifyEditTexts()){
-                Intent myIntent = new Intent(BookletAddRowActivity.this, BookletEditActivity.class);
+                Intent myIntent = new Intent(BookletDelRowActivity.this, BookletEditActivity.class);
                 myIntent.putExtra(getString(R.string.profile), profile);
-                BookletAddRowActivity.this.startActivity(myIntent);
+                BookletDelRowActivity.this.startActivity(myIntent);
                 finish();
             }
-
         });
 
-        Button bBack = findViewById(R.id.btCancelBAR);
+        Button bBack = findViewById(R.id.btCancelBDR);
         bBack.setOnClickListener(v -> {
-            Intent myIntent = new Intent(BookletAddRowActivity.this, BookletEditActivity.class);
+            Intent myIntent = new Intent(BookletDelRowActivity.this, BookletEditActivity.class);
             myIntent.putExtra(getString(R.string.profile), profile);
-            BookletAddRowActivity.this.startActivity(myIntent);
+            BookletDelRowActivity.this.startActivity(myIntent);
         });
 
-        Button bLogOff = findViewById(R.id.LogOutBAR);
+        Button bLogOff = findViewById(R.id.LogOutBDR);
         bLogOff.setOnClickListener(v -> {
             moveTaskToBack(true);
             android.os.Process.killProcess(android.os.Process.myPid());
             System.exit(1);
         });
 
-        TableLayout tableLayout = findViewById(R.id.tableDataBAR);
-        tableLayout.invalidate();
     }
+
 
     public boolean verifyEditTexts() {
         String vaccine;
-        String date;
 
-        EditText etVaccine = findViewById(R.id.etVaccineBAR);
+        EditText etVaccine = findViewById(R.id.etVaccineBDR);
         vaccine = etVaccine.getText().toString();
 
-        EditText etDate = findViewById(R.id.etDateBAR);
-        date = etDate.getText().toString();
-
-        if((TextUtils.isEmpty(vaccine) && TextUtils.isEmpty(date)) || (TextUtils.isEmpty(vaccine) && (!TextUtils.isEmpty(date)))) {
+        if(TextUtils.isEmpty(vaccine)) {
             Toast.makeText(this,
                     R.string.need_to_incert_vaccine_name,
                     Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        VaccineData vaccineData = new VaccineData(vaccine, date);
-        profile.getBooklet().getVaccinesData().add(vaccineData);
+        for (int i = 0; i <  profile.getBooklet().getVaccinesData().size(); i++){
+            if (vaccine.equals(profile.getBooklet().getVaccinesData().get(i).getVaccineName())){
+                profile.getBooklet().getVaccinesData().remove(i);
+            }
+        }
         return true;
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
-            Intent myIntent = new Intent(BookletAddRowActivity.this, BookletEditActivity.class);
+            Intent myIntent = new Intent(BookletDelRowActivity.this, BookletEditActivity.class);
             myIntent.putExtra(getString(R.string.profile), profile);
-            BookletAddRowActivity.this.startActivity(myIntent);
+            BookletDelRowActivity.this.startActivity(myIntent);
             finish();
             return true;
         }

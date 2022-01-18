@@ -13,24 +13,6 @@
         android:layout_height="wrap_content"
         android:baselineAligned="false">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:padding="10dp">
-
-            <Button
-                android:id="@+id/btbackAlarm"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:backgroundTint="@color/red"
-                android:text="@string/back"
-                android:layout_marginEnd="10dp"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                android:layout_gravity="end"
-                />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"

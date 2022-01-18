@@ -40,13 +40,6 @@ public class AlarmActivity extends AppCompatActivity {
             AlarmActivity.this.startActivity(myIntent);
         });
 
-        Button aBack = findViewById(R.id.btbackAlarm);
-        aBack.setOnClickListener(v -> {
-            Intent myIntent = new Intent(AlarmActivity.this, MainActivity.class);
-            myIntent.putExtra(getString(R.string.alarm), alarmprofile);
-            AlarmActivity.this.startActivity(myIntent);
-        });
-
         Button aLogOff = findViewById(R.id.LogOutAlarm);
         aLogOff.setOnClickListener(v -> {
             moveTaskToBack(true);
@@ -73,7 +66,7 @@ public class AlarmActivity extends AppCompatActivity {
 
             TableRow tbrow = new TableRow(this);
             TextView t1v = new TextView(this);
-            t1v.setText(alarmsTable.getAlarmsData().get(i).getMedicineName());
+            t1v.setText(alarmsTable.getAlarmsData().get(i).getName());
             t1v.setTextColor(getResources().getColor(R.color.black));
             t1v.setTextSize(16);
             t1v.setGravity(Gravity.CENTER);

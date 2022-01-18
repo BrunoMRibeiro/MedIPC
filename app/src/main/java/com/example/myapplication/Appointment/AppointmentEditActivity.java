@@ -52,13 +52,20 @@ public class AppointmentEditActivity extends AppCompatActivity {
             AppointmentEditActivity.this.startActivity(myIntent);
         });
 
+        Button btDelRow = findViewById(R.id.btDelAppointment);
+        btDelRow.setOnClickListener(v -> {
+            Intent myIntent = new Intent(AppointmentEditActivity.this, AppointmentDelRowActivity.class);
+            myIntent.putExtra(getString(R.string.appointment_key), appointmentProfile);
+            AppointmentEditActivity.this.startActivity(myIntent);
+        });
+
+
         Button btDone = findViewById(R.id.btDoneAPE);
         btDone.setOnClickListener(v -> {
             updateData();
 
             String filename = "appointment.srl";
             ObjectOutput out = null;
-
 
             try {
                 out = new ObjectOutputStream(new FileOutputStream(new File(getFilesDir(),"")+File.separator+filename));

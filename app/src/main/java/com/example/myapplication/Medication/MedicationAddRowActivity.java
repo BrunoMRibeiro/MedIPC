@@ -84,8 +84,8 @@ public class MedicationAddRowActivity extends AppCompatActivity {
 
     public boolean verifyEditTexts() {
         String name;
-        String hours;
-        String nextTake;
+        String hours = "";
+        String nextTake = "";
         String nextTake1;
         String hours2;
 
@@ -109,18 +109,16 @@ public class MedicationAddRowActivity extends AppCompatActivity {
             hours = hours2 + "h - " + hours2 + "h";
             MedicationData medicationData = new MedicationData(name, hours, nextTake);
             medicationProfile.getMedication().getMedicationData().add(medicationData);
-
-
         }
         else{
             Toast.makeText(this,
-                    R.string.error_with_med_data,
+                    "Insira uma data correta",
                     Toast.LENGTH_SHORT).show();
         }
 
-        if((TextUtils.isEmpty(name) && TextUtils.isEmpty(name)) || (TextUtils.isEmpty(name) && (!TextUtils.isEmpty(name)))) {
+        if(TextUtils.isEmpty(name) || TextUtils.isEmpty(hours) || TextUtils.isEmpty(nextTake)) {
             Toast.makeText(this,
-                    R.string.need_to_incert_medicine_name,
+                    "Need to insert all Medication data",
                     Toast.LENGTH_SHORT).show();
             return false;
         }
