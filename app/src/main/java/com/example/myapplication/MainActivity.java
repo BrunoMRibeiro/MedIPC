@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.StreamCorruptedException;
 
-
+// Classe inicial da aplicação (depois de fazer login)
 public class MainActivity extends AppCompatActivity {
     private Profile profile;
     private AlarmProfile alarmprofile;
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Classes com toda a informação
         profile = new Profile();
         alarmprofile = new AlarmProfile();
         medicationProfile = new MedicationProfile();
@@ -60,22 +61,28 @@ public class MainActivity extends AppCompatActivity {
         Button button3 = findViewById(R.id.btMedication);
         Button button4 = findViewById(R.id.btAppointment);
 
+        // Evento para a ação de aceder ao profile
         button.setOnClickListener(v -> {
             Intent myIntent = new Intent(MainActivity.this, ProfileActivity.class);
             myIntent.putExtra("profile", profile);
             MainActivity.this.startActivity(myIntent);
         });
+
+        // Evento para a ação de aceder aos alarmes
         button2.setOnClickListener(v -> {
             Intent myIntent = new Intent(MainActivity.this, AlarmActivity.class);
             myIntent.putExtra("alarm", alarmprofile);
             MainActivity.this.startActivity(myIntent);
         });
+
+        // Evento para a ação de aceder à medicação
         button3.setOnClickListener(v -> {
             Intent myIntent = new Intent(MainActivity.this, MedicationActivity.class);
             myIntent.putExtra(getString(R.string.medication_key), medicationProfile);
             MainActivity.this.startActivity(myIntent);
         });
 
+        // Evento para a ação de aceder às consultas
         button4.setOnClickListener(v -> {
             Intent myIntent = new Intent(MainActivity.this, AppointmentActivity.class);
             myIntent.putExtra(getString(R.string.appointment_key), appointmentProfile);
@@ -89,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // Carrega a informação do Profile
     public void readProfile(){
         ObjectInputStream input;
         String filename = "profile.srl";
@@ -97,17 +105,12 @@ public class MainActivity extends AppCompatActivity {
             input = new ObjectInputStream(new FileInputStream(new File(new File(getFilesDir(),"")+File.separator+filename)));
             profile = (Profile) input.readObject();
             input.close();
-        } catch (StreamCorruptedException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
+    // Carrega a informação dos Alarmes
     public void readAlarmProfile(){
         ObjectInputStream input;
         String filename = "alarm.srl";
@@ -116,17 +119,12 @@ public class MainActivity extends AppCompatActivity {
             input = new ObjectInputStream(new FileInputStream(new File(new File(getFilesDir(),"")+File.separator+filename)));
             alarmprofile = (AlarmProfile) input.readObject();
             input.close();
-        } catch (StreamCorruptedException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
+    // Carrega a informação da medicação
     public void readMedicationProfile(){
         ObjectInputStream input;
         String filename = "medication.srl";
@@ -135,17 +133,12 @@ public class MainActivity extends AppCompatActivity {
             input = new ObjectInputStream(new FileInputStream(new File(new File(getFilesDir(),"")+File.separator+filename)));
             medicationProfile = (MedicationProfile) input.readObject();
             input.close();
-        } catch (StreamCorruptedException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
+    // Carrega a informação dos Appointments
     public void readAppointmentProfile(){
         ObjectInputStream input;
         String filename = "appointment.srl";
@@ -154,13 +147,7 @@ public class MainActivity extends AppCompatActivity {
             input = new ObjectInputStream(new FileInputStream(new File(new File(getFilesDir(),"")+File.separator+filename)));
             appointmentProfile = (AppointmentProfile) input.readObject();
             input.close();
-        } catch (StreamCorruptedException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

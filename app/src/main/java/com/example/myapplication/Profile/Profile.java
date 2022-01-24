@@ -3,12 +3,13 @@ package com.example.myapplication.Profile;
 
 import java.io.Serializable;
 
+// Classe responsável por guardar a informação do utilizador
 public class Profile implements Serializable {
     private Booklet booklet = new Booklet();
     private String name = "";
     private int age;
     private String sex = "";
-    private double Height;
+    private int Height;
     private double Weight;
     private String bloodType = "";
     private String alergies = "";
@@ -42,11 +43,11 @@ public class Profile implements Serializable {
         this.sex = sex;
     }
 
-    public double getHeight() {
+    public int getHeight() {
         return Height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(int height) {
         Height = height;
     }
 

@@ -2,6 +2,7 @@ package com.example.myapplication.Profile;
 
 import java.io.Serializable;
 
+// Classe responsável por guardar a informação de cada vacina
 public class VaccineData implements Serializable {
     private String vaccineName;
     private String date;

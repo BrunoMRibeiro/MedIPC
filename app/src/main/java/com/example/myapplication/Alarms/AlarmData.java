@@ -2,6 +2,7 @@ package com.example.myapplication.Alarms;
 
 import java.io.Serializable;
 
+// Classe responsável pela informação de cada Alarme
 public class AlarmData implements Serializable {
     private String name;
     private String description;

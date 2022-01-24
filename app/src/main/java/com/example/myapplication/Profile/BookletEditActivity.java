@@ -25,6 +25,7 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+// Classe responsável por editar um registo no booklet
 public class BookletEditActivity extends AppCompatActivity {
     private Profile profile;
     private ArrayList<EditText> editTexts;
@@ -41,10 +42,12 @@ public class BookletEditActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
+        // Recebe os dados do profile
         profile = new Profile();
         if(getIntent().getSerializableExtra(getString(R.string.profile)) != null)
             profile = (Profile)getIntent().getSerializableExtra(getString(R.string.profile));
 
+        // Evento para a ação de adicionar um registo
         Button btAddRow = findViewById(R.id.btAddColuBE);
         btAddRow.setOnClickListener(v -> {
             Intent myIntent = new Intent(BookletEditActivity.this, BookletAddRowActivity.class);
@@ -52,6 +55,7 @@ public class BookletEditActivity extends AppCompatActivity {
             BookletEditActivity.this.startActivity(myIntent);
         });
 
+        // Evento para a ação de remover um registo
         Button btDelRow = findViewById(R.id.btDelColuBE);
         btDelRow.setOnClickListener(v -> {
             Intent myIntent = new Intent(BookletEditActivity.this, BookletDelRowActivity.class);
@@ -59,19 +63,17 @@ public class BookletEditActivity extends AppCompatActivity {
             BookletEditActivity.this.startActivity(myIntent);
         });
 
+        // Evento para a ação de confirmar a edição
         Button btDone = findViewById(R.id.btDoneBE);
         btDone.setOnClickListener(v -> {
             updateData();
 
             String filename = "profile.srl";
             ObjectOutput out = null;
-
             try {
                 out = new ObjectOutputStream(new FileOutputStream(new File(getFilesDir(),"")+File.separator+filename));
                 out.writeObject(profile);
                 out.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -82,6 +84,7 @@ public class BookletEditActivity extends AppCompatActivity {
             finish();
         });
 
+        // Evento para o botão de desligar a aplicação
         Button bLogOff = findViewById(R.id.LogOutBE);
         bLogOff.setOnClickListener(v -> {
             moveTaskToBack(true);
@@ -94,7 +97,7 @@ public class BookletEditActivity extends AppCompatActivity {
         tableLayout.invalidate();
     }
 
-
+    // Classe responsável por mostrar uma tabela com os registos do booklet
     @SuppressLint("UseCompatLoadingForDrawables")
     public void createFill(Booklet vaccinesTable) {
         TableLayout stk = findViewById(R.id.tableDataBE);
@@ -132,6 +135,7 @@ public class BookletEditActivity extends AppCompatActivity {
         }
     }
 
+    // Atualiza a informação
     public void  updateData() {
         ArrayList<VaccineData> vaccines = new ArrayList<>();
 
@@ -142,7 +146,7 @@ public class BookletEditActivity extends AppCompatActivity {
         profile.getBooklet().setVaccinesData(vaccines);
     }
 
-
+    // Caso o utilizador carregue no botão "up" volta para a Atividade anterior
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();

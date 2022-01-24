@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 
+// Classe responsável pela remoção de um alarme
 public class AlarmDelRowActivity extends AppCompatActivity {
     private AlarmProfile alarmprofile;
 
@@ -33,10 +34,12 @@ public class AlarmDelRowActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
+        // Recebe os dados dos alarmes
         alarmprofile = new AlarmProfile();
         if (getIntent().getSerializableExtra(getString(R.string.alarm)) != null)
             alarmprofile = (AlarmProfile) getIntent().getSerializableExtra(getString(R.string.alarm));
 
+        // Evento para a ação de confirmar a remoção do alarme
         Button aEdit = findViewById(R.id.btDoneADR);
         aEdit.setOnClickListener(v -> {
             if(verifyEditTexts()){
@@ -62,6 +65,7 @@ public class AlarmDelRowActivity extends AppCompatActivity {
 
         });
 
+        // Evento para o botão de cancelar a remoção de um alarme
         Button aBack = findViewById(R.id.btCancelADR);
         aBack.setOnClickListener(v -> {
             Intent myIntent = new Intent(AlarmDelRowActivity.this, AlarmEditActivity.class);
@@ -69,6 +73,7 @@ public class AlarmDelRowActivity extends AppCompatActivity {
             AlarmDelRowActivity.this.startActivity(myIntent);
         });
 
+        // Evento para o botão de desligar a aplicação
         Button aLogOff = findViewById(R.id.LogOutADR);
         aLogOff.setOnClickListener(v -> {
             moveTaskToBack(true);
@@ -78,6 +83,7 @@ public class AlarmDelRowActivity extends AppCompatActivity {
 
     }
 
+    // Verifica os campos preenchidos pelo utilizador
     public boolean verifyEditTexts() {
         String name;
 
@@ -101,6 +107,7 @@ public class AlarmDelRowActivity extends AppCompatActivity {
         return true;
     }
 
+    // Caso o utilizador carregue no botão "up" volta para a Atividade anterior
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();

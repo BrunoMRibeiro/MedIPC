@@ -347,13 +347,20 @@
         </TableLayout>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btDonePE"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/done"
-        android:layout_gravity="end"
-        android:backgroundTint="@color/green"
-        android:layout_marginEnd="20dp"/>
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/btDonePE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/done"
+            android:layout_gravity="end"
+            android:backgroundTint="@color/green"
+            android:gravity="center"/>
+    </LinearLayout>
+
 
 </LinearLayout>

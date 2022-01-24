@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 
+// Classe responsável por adicionar uma nova medicação
 public class MedicationAddRowActivity extends AppCompatActivity {
     private MedicationProfile medicationProfile;
 
@@ -34,22 +35,21 @@ public class MedicationAddRowActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
+        // Recebe os dados das medicações
         medicationProfile = new MedicationProfile();
         if (getIntent().getSerializableExtra(getString(R.string.medication_key)) != null)
             medicationProfile = (MedicationProfile) getIntent().getSerializableExtra(getString(R.string.medication_key));
 
+        // Evento para a ação de confirmar a nova edição
         Button aEdit = findViewById(R.id.btDoneARM);
         aEdit.setOnClickListener(v -> {
 
             String filename = "medication.srl";
             ObjectOutput out = null;
-
             try {
                 out = new ObjectOutputStream(new FileOutputStream(new File(getFilesDir(),"")+File.separator+filename));
                 out.writeObject(medicationProfile);
                 out.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -59,10 +59,13 @@ public class MedicationAddRowActivity extends AppCompatActivity {
                 myIntent.putExtra(getString(R.string.medication_key), medicationProfile);
                 MedicationAddRowActivity.this.startActivity(myIntent);
                 finish();
+            }else{
+                Toast.makeText(this, "Insira uma data conforme o exemplo: 10:20", Toast.LENGTH_SHORT).show();
             }
 
         });
 
+        // Evento para a ação de cancelar a adição da nova medicação
         Button aBack = findViewById(R.id.btCancelARM);
         aBack.setOnClickListener(v -> {
             Intent myIntent = new Intent(MedicationAddRowActivity.this, MedicationEditActivity.class);
@@ -70,6 +73,7 @@ public class MedicationAddRowActivity extends AppCompatActivity {
             MedicationAddRowActivity.this.startActivity(myIntent);
         });
 
+        // Evento para o botão de desligar a aplicação
         Button aLogOff = findViewById(R.id.LogOutARM);
         aLogOff.setOnClickListener(v -> {
             moveTaskToBack(true);
@@ -81,7 +85,7 @@ public class MedicationAddRowActivity extends AppCompatActivity {
         tableLayout.invalidate();
     }
 
-
+    // Classe responsável pela verificação dos campos de texto
     public boolean verifyEditTexts() {
         String name;
         String hours = "";
@@ -94,28 +98,41 @@ public class MedicationAddRowActivity extends AppCompatActivity {
 
         EditText etHours = findViewById(R.id.HoursARM);
         hours2 = etHours.getText().toString();
-        int intervalo = Integer.parseInt(hours2);
-
+        int intervalo;
+        try{
+            intervalo = Integer.parseInt(hours2);
+        }catch (NumberFormatException e){
+            return false;
+        }
 
         EditText etNextTake = findViewById(R.id.NextTakeARM);
         nextTake1 = etNextTake.getText().toString();
-        String splitTime[]=nextTake1.split(":");
-        String nexttake2=splitTime[0];
-        String nexttake3=splitTime[1];
-        int horas = Integer.parseInt(nexttake2);
-        int minutos = Integer.parseInt(nexttake3);
-        if(horas <= 23 && horas >= 0 && minutos <= 59 && minutos >= 0 && intervalo<= 23 && intervalo >= 0){
-            nextTake = nexttake2 + "h:" + nexttake3 + "m";
-            hours = hours2 + "h - " + hours2 + "h";
-            MedicationData medicationData = new MedicationData(name, hours, nextTake);
-            medicationProfile.getMedication().getMedicationData().add(medicationData);
-        }
-        else{
-            Toast.makeText(this,
-                    "Insira uma data correta",
-                    Toast.LENGTH_SHORT).show();
-        }
 
+        String splitTime[] = nextTake1.split(":");
+        if (splitTime.length == 2) {
+            String nexttake2 = splitTime[0];
+            String nexttake3 = splitTime[1];
+            int horas;
+            int minutos;
+            try{
+                horas = Integer.parseInt(nexttake2);
+                minutos = Integer.parseInt(nexttake3);
+            }catch (NumberFormatException e){
+                return false;
+            }
+            if (horas <= 23 && horas >= 0 && minutos <= 59 && minutos >= 0 && intervalo <= 23 && intervalo >= 0) {
+                nextTake = nexttake2 + "h:" + nexttake3 + "m";
+                hours = hours2 + "h - " + hours2 + "h";
+                MedicationData medicationData = new MedicationData(name, hours, nextTake);
+                medicationProfile.getMedication().getMedicationData().add(medicationData);
+            } else {
+                Toast.makeText(this,
+                        "Insira uma data correta",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            return false;
+        }
         if(TextUtils.isEmpty(name) || TextUtils.isEmpty(hours) || TextUtils.isEmpty(nextTake)) {
             Toast.makeText(this,
                     "Need to insert all Medication data",
@@ -125,6 +142,7 @@ public class MedicationAddRowActivity extends AppCompatActivity {
         return true;
     }
 
+    // Caso o utilizador carregue no botão "up" volta para a Atividade anterior
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();

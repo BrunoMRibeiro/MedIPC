@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 
-
+// Classe responsável pela remoção de uma consulta
 public class AppointmentDelRowActivity extends AppCompatActivity {
     private AppointmentProfile appointmentProfile;
 
@@ -33,10 +33,12 @@ public class AppointmentDelRowActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
+        // Recebe os dados dos appointments
         appointmentProfile = new AppointmentProfile();
         if (getIntent().getSerializableExtra(getString(R.string.appointment_key)) != null)
             appointmentProfile = (AppointmentProfile) getIntent().getSerializableExtra(getString(R.string.appointment_key));
 
+        // Evento para a ação de confirmar a remoção da consulta
         Button aEdit = findViewById(R.id.btDoneDRAp);
         aEdit.setOnClickListener(v -> {
 
@@ -61,6 +63,7 @@ public class AppointmentDelRowActivity extends AppCompatActivity {
             }
         });
 
+        // Evento para a ação de cancelar a remoção
         Button aBack = findViewById(R.id.btCancelDRAp);
         aBack.setOnClickListener(v -> {
             Intent myIntent = new Intent(AppointmentDelRowActivity.this, AppointmentEditActivity.class);
@@ -68,6 +71,7 @@ public class AppointmentDelRowActivity extends AppCompatActivity {
             AppointmentDelRowActivity.this.startActivity(myIntent);
         });
 
+        // Evento para o botão de desligar a aplicação
         Button aLogOff = findViewById(R.id.LogOutDRAp);
         aLogOff.setOnClickListener(v -> {
             moveTaskToBack(true);
@@ -76,7 +80,7 @@ public class AppointmentDelRowActivity extends AppCompatActivity {
         });
     }
 
-
+    // Classe responsável pela verificação das caixas de texto
     public boolean verifyEditTexts() {
         String info;
 
@@ -98,6 +102,7 @@ public class AppointmentDelRowActivity extends AppCompatActivity {
         return true;
     }
 
+    // Caso o utilizador carregue no botão "up" volta para a Atividade anterior
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
@@ -107,7 +112,6 @@ public class AppointmentDelRowActivity extends AppCompatActivity {
             finish();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

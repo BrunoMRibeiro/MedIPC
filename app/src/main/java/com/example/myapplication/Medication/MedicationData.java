@@ -2,6 +2,7 @@ package com.example.myapplication.Medication;
 
 import java.io.Serializable;
 
+// Classe responsável por guardar a informação de cada Medicação
 public class MedicationData implements Serializable {
     private String name;
     private String hours;

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.Medication.MedicationData;
 import com.example.myapplication.R;
 
 import java.io.File;
@@ -23,6 +24,7 @@ import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 
+// Classe responsável por adicionar um novo alarme
 public class AlarmAddRowActivity extends AppCompatActivity {
     private AlarmProfile alarmprofile;
 
@@ -36,27 +38,15 @@ public class AlarmAddRowActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
+        // Recebe os dados dos alarmes
         alarmprofile = new AlarmProfile();
         if (getIntent().getSerializableExtra(getString(R.string.alarm)) != null)
             alarmprofile = (AlarmProfile) getIntent().getSerializableExtra(getString(R.string.alarm));
 
+
+        // Evento para a ação de confirmar o novo alarme
         Button aEdit = findViewById(R.id.btDoneAAR);
         aEdit.setOnClickListener(v -> {
-            if(verifyEditTexts()){
-
-                String filename = "alarm.srl";
-                ObjectOutput out = null;
-
-                try {
-                    out = new ObjectOutputStream(new FileOutputStream(new File(getFilesDir(),"")+File.separator+filename));
-                    out.writeObject(alarmprofile);
-                    out.close();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
                 try{
                     EditText setTime = (EditText)findViewById(R.id.etSetTimeAAR);
                     EditText medicine = (EditText)findViewById(R.id.etMedicineAAR);
@@ -70,27 +60,45 @@ public class AlarmAddRowActivity extends AppCompatActivity {
                     String minutos=splitTime[1];
                     int horas2 = Integer.parseInt(horas);
                     int minutos2 = Integer.parseInt(minutos);
+
                     Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
                     intent.putExtra(AlarmClock.EXTRA_HOUR,horas2);
                     intent.putExtra(AlarmClock.EXTRA_MINUTES,minutos2);
                     intent.putExtra(AlarmClock.EXTRA_MESSAGE,mensagem);
                     if(horas2 <= 24 && minutos2 <= 60) {
+                        String filename = "alarm.srl";
+                        ObjectOutput out = null;
+
+                        try {
+                            out = new ObjectOutputStream(new FileOutputStream(new File(getFilesDir(),"")+File.separator+filename));
+                            out.writeObject(alarmprofile);
+                            out.close();
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        AlarmData alarmData = new AlarmData(medicamento, descricao, tempo);
+                        alarmprofile.getAlarm().getAlarmsData().add(alarmData);
+
                         startActivity(intent);
+                        Intent myIntent = new Intent(AlarmAddRowActivity.this, AlarmEditActivity.class);
+                        myIntent.putExtra(getString(R.string.alarm), alarmprofile);
+                        AlarmAddRowActivity.this.startActivity(myIntent);
+                        finish();
+                    }else{
+                        Toast.makeText(this,
+                                "Need to insert: Hour:Minutes",
+                                Toast.LENGTH_SHORT).show();
                     }
-                }catch (ArrayIndexOutOfBoundsException e){
+                }catch (ArrayIndexOutOfBoundsException | NumberFormatException e){
                     Toast.makeText(this,
                             "Need to insert: Hour:Minutes",
                             Toast.LENGTH_SHORT).show();
                 }
-
-                Intent myIntent = new Intent(AlarmAddRowActivity.this, AlarmEditActivity.class);
-                myIntent.putExtra(getString(R.string.alarm), alarmprofile);
-                AlarmAddRowActivity.this.startActivity(myIntent);
-                finish();
-            }
-
         });
 
+        // Evento para o botão de cancelar a adição de novo alarme
         Button aBack = findViewById(R.id.btCancelAAR);
         aBack.setOnClickListener(v -> {
             Intent myIntent = new Intent(AlarmAddRowActivity.this, AlarmEditActivity.class);
@@ -98,6 +106,7 @@ public class AlarmAddRowActivity extends AppCompatActivity {
             AlarmAddRowActivity.this.startActivity(myIntent);
         });
 
+        // Evento para o botão de desligar a aplicação
         Button aLogOff = findViewById(R.id.LogOutAAR);
         aLogOff.setOnClickListener(v -> {
             moveTaskToBack(true);
@@ -109,32 +118,7 @@ public class AlarmAddRowActivity extends AppCompatActivity {
         tableLayout.invalidate();
     }
 
-
-    public boolean verifyEditTexts() {
-        String medicine;
-        String description;
-        String settime;
-
-        EditText etMedicine = findViewById(R.id.etMedicineAAR);
-        medicine = etMedicine.getText().toString();
-
-        EditText etDescription = findViewById(R.id.etDescriptionAAR);
-        description = etDescription.getText().toString();
-
-        EditText etSetTime = findViewById(R.id.etSetTimeAAR);
-        settime = etSetTime.getText().toString();
-
-        if(TextUtils.isEmpty(medicine) || TextUtils.isEmpty(description) || TextUtils.isEmpty(settime)) {
-            Toast.makeText(this, "Need to insert all alarm data",
-                    Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        AlarmData alarmData = new AlarmData(medicine, description, settime);
-        alarmprofile.getAlarm().getAlarmsData().add(alarmData);
-        return true;
-    }
-
+    // Caso o utilizador carregue no botão "up" volta para a Atividade anterior
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();

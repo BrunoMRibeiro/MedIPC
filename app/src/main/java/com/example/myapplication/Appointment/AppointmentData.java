@@ -2,6 +2,7 @@ package com.example.myapplication.Appointment;
 
 import java.io.Serializable;
 
+// Classe responsável por guardar a informação de cada appointment
 public class AppointmentData implements Serializable {
     private String info;
     private String date;

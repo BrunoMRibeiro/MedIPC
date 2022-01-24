@@ -20,6 +20,7 @@ import com.example.myapplication.R;
 import java.io.File;
 import java.util.Scanner;
 
+// Classe responsável por mostrar as Medicações existentes
 public class MedicationActivity extends AppCompatActivity {
     private MedicationProfile medicationprofile;
 
@@ -33,10 +34,12 @@ public class MedicationActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
+        // Recebe os dados das medicações
         medicationprofile = new MedicationProfile();
         if(getIntent().getSerializableExtra(getString(R.string.medication_key)) != null)
             medicationprofile = (MedicationProfile) getIntent().getSerializableExtra(getString(R.string.medication_key));
 
+        // Evento para a ação de editar uma medicação
         Button btEdit = findViewById(R.id.btEditM);
         btEdit.setOnClickListener(v -> {
             Intent myIntent = new Intent(MedicationActivity.this, MedicationEditActivity.class);
@@ -44,6 +47,7 @@ public class MedicationActivity extends AppCompatActivity {
             MedicationActivity.this.startActivity(myIntent);
         });
 
+        // Evento para o botão de desligar a aplicação
         Button btLogOff = findViewById(R.id.LogOutM);
         btLogOff.setOnClickListener(v -> {
             moveTaskToBack(true);
@@ -51,16 +55,12 @@ public class MedicationActivity extends AppCompatActivity {
             System.exit(1);
         });
 
-      /*  Button btCheckHistoryM = findViewById(R.id.HistoryMA);
-        btCheckHistoryM.setOnClickListener(v -> {
-            openFile();
-        });*/
-
         init(medicationprofile.getMedication());
         TableLayout tableLayout = findViewById(R.id.tableDataMedication);
         tableLayout.invalidate();
     }
 
+    // Classe responsável por mostrar todas as medicações
     @SuppressLint("UseCompatLoadingForDrawables")
     public void init(Medication medicationTable){
         TableLayout stk = findViewById(R.id.tableDataMedication);
@@ -105,6 +105,7 @@ public class MedicationActivity extends AppCompatActivity {
         }
     }
 
+    // Caso o utilizador carregue no botão "up" volta para a Atividade anterior
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
@@ -115,29 +116,6 @@ public class MedicationActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private Scanner x;
-
-    public void openFile(){
-        try{
-            x = new Scanner(new File("HistoricoMed.txt"));
-        }
-        catch(Exception e){
-            System.out.println("File could not be found");
-        }
-        readFile();
-    }
-
-    public void readFile(){
-        while(x.hasNext()){
-            String a = x.next();
-            String b = x.next();
-            String c = x.next();
-
-            MedicationData medicationData = new MedicationData(a, b, c);
-            medicationprofile.getMedication().getMedicationData().add(medicationData);
-        }
     }
 }
 

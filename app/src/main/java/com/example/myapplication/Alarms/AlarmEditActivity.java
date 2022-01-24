@@ -24,6 +24,7 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+// Classe responsável pela edição de um alarme
 public class AlarmEditActivity extends AppCompatActivity {
     private AlarmProfile alarmprofile;
     private ArrayList<EditText> editTexts;
@@ -40,10 +41,12 @@ public class AlarmEditActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
+        // Recebe os dados dos alarmes
         alarmprofile = new AlarmProfile();
         if(getIntent().getSerializableExtra(getString(R.string.alarm)) != null)
             alarmprofile = (AlarmProfile) getIntent().getSerializableExtra(getString(R.string.alarm));
 
+        // Evento para a ação de adicionar um novo alarme
         Button btAddRow = findViewById(R.id.btAddColAlarm);
         btAddRow.setOnClickListener(v -> {
             Intent myIntent = new Intent(AlarmEditActivity.this, AlarmAddRowActivity.class);
@@ -51,6 +54,7 @@ public class AlarmEditActivity extends AppCompatActivity {
             AlarmEditActivity.this.startActivity(myIntent);
         });
 
+        // Evento para a ação de remover um alarme existente
         Button btDelRow = findViewById(R.id.btDelColAlarm);
         btDelRow.setOnClickListener(v -> {
             Intent myIntent = new Intent(AlarmEditActivity.this, AlarmDelRowActivity.class);
@@ -58,6 +62,7 @@ public class AlarmEditActivity extends AppCompatActivity {
             AlarmEditActivity.this.startActivity(myIntent);
         });
 
+        // Evento para a ação de confirmar a edição dos alarmes
         Button btDone = findViewById(R.id.btDoneAE);
         btDone.setOnClickListener(v -> {
             updateData();
@@ -69,8 +74,6 @@ public class AlarmEditActivity extends AppCompatActivity {
                 out = new ObjectOutputStream(new FileOutputStream(new File(getFilesDir(),"")+File.separator+filename));
                 out.writeObject(alarmprofile);
                 out.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -81,6 +84,7 @@ public class AlarmEditActivity extends AppCompatActivity {
             finish();
         });
 
+        // Evento para o botão de desligar a aplicação
         Button bLogOff = findViewById(R.id.LogOutAE);
         bLogOff.setOnClickListener(v -> {
             moveTaskToBack(true);
@@ -94,6 +98,7 @@ public class AlarmEditActivity extends AppCompatActivity {
     }
 
 
+    // Cria a lista dos alarmes
     @SuppressLint("UseCompatLoadingForDrawables")
     public void createFill(Alarm alarmsTable) {
         TableLayout stk = findViewById(R.id.tableDataAlarmEdit);
@@ -142,6 +147,7 @@ public class AlarmEditActivity extends AppCompatActivity {
         }
     }
 
+    // Atualiza a tabela dos alarmes
     public void  updateData() {
         ArrayList<AlarmData> alarms = new ArrayList<>();
 
@@ -152,7 +158,7 @@ public class AlarmEditActivity extends AppCompatActivity {
         alarmprofile.getAlarm().setAlarmsData(alarms);
     }
 
-
+    // Caso o utilizador carregue no botão "up" volta para a Atividade anterior
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();

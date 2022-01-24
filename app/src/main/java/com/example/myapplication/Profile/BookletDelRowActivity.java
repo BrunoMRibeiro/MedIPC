@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 
+// Classe responsável por remover um registo no booklet
 public class BookletDelRowActivity extends AppCompatActivity {
     private Profile profile;
 
@@ -31,26 +32,24 @@ public class BookletDelRowActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
+        // Recebe os dados do profile
         profile = new Profile();
         if (getIntent().getSerializableExtra(getString(R.string.profile)) != null)
             profile = (Profile) getIntent().getSerializableExtra(getString(R.string.profile));
 
+        // Evento para a ação de confirmar a remoção
         Button btDone = findViewById(R.id.btDoneBDR);
         btDone.setOnClickListener(v -> {
 
             String filename = "profile.srl";
             ObjectOutput out = null;
-
             try {
                 out = new ObjectOutputStream(new FileOutputStream(new File(getFilesDir(),"")+File.separator+filename));
                 out.writeObject(profile);
                 out.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             if(verifyEditTexts()){
                 Intent myIntent = new Intent(BookletDelRowActivity.this, BookletEditActivity.class);
                 myIntent.putExtra(getString(R.string.profile), profile);
@@ -59,6 +58,7 @@ public class BookletDelRowActivity extends AppCompatActivity {
             }
         });
 
+        // Evento para a ação de cancelar a remoção
         Button bBack = findViewById(R.id.btCancelBDR);
         bBack.setOnClickListener(v -> {
             Intent myIntent = new Intent(BookletDelRowActivity.this, BookletEditActivity.class);
@@ -66,6 +66,7 @@ public class BookletDelRowActivity extends AppCompatActivity {
             BookletDelRowActivity.this.startActivity(myIntent);
         });
 
+        // Evento para o botão de desligar a aplicação
         Button bLogOff = findViewById(R.id.LogOutBDR);
         bLogOff.setOnClickListener(v -> {
             moveTaskToBack(true);
@@ -75,7 +76,7 @@ public class BookletDelRowActivity extends AppCompatActivity {
 
     }
 
-
+    // Classe responsável pela verificação dos campos de texto
     public boolean verifyEditTexts() {
         String vaccine;
 
@@ -97,6 +98,7 @@ public class BookletDelRowActivity extends AppCompatActivity {
         return true;
     }
 
+    // Caso o utilizador carregue no botão "up" volta para a Atividade anterior
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
@@ -106,7 +108,6 @@ public class BookletDelRowActivity extends AppCompatActivity {
             finish();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

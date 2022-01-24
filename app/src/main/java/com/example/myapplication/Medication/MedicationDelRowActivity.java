@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 
+// Classe responsável por remover uma medicação existente
 public class MedicationDelRowActivity extends AppCompatActivity {
         private MedicationProfile medicationProfile;
 
@@ -33,10 +34,12 @@ public class MedicationDelRowActivity extends AppCompatActivity {
                 ab.setDisplayHomeAsUpEnabled(true);
             }
 
+            // Recebe os dados das medicações
             medicationProfile = new MedicationProfile();
             if (getIntent().getSerializableExtra(getString(R.string.medication_key)) != null)
                 medicationProfile = (MedicationProfile) getIntent().getSerializableExtra(getString(R.string.medication_key));
 
+            // Evento para a ação de confirmar a remoção
             Button aEdit = findViewById(R.id.btDoneDRM);
             aEdit.setOnClickListener(v -> {
 
@@ -47,8 +50,6 @@ public class MedicationDelRowActivity extends AppCompatActivity {
                     out = new ObjectOutputStream(new FileOutputStream(new File(getFilesDir(),"")+File.separator+filename));
                     out.writeObject(medicationProfile);
                     out.close();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -61,6 +62,7 @@ public class MedicationDelRowActivity extends AppCompatActivity {
                 }
             });
 
+            // Evento para a ação de cancelar a remoção de uma medicação
             Button aBack = findViewById(R.id.btCancelDRM);
             aBack.setOnClickListener(v -> {
                 Intent myIntent = new Intent(MedicationDelRowActivity.this, MedicationEditActivity.class);
@@ -68,6 +70,7 @@ public class MedicationDelRowActivity extends AppCompatActivity {
                 MedicationDelRowActivity.this.startActivity(myIntent);
             });
 
+            // Evento para o botão de desligar a aplicação
             Button aLogOff = findViewById(R.id.LogOutDRM);
             aLogOff.setOnClickListener(v -> {
                 moveTaskToBack(true);
@@ -76,7 +79,7 @@ public class MedicationDelRowActivity extends AppCompatActivity {
             });
         }
 
-
+        // Classe responsável pela verificação dos campos de texto
         public boolean verifyEditTexts() {
             String name;
 
@@ -98,6 +101,7 @@ public class MedicationDelRowActivity extends AppCompatActivity {
             return true;
         }
 
+    // Caso o utilizador carregue no botão "up" volta para a Atividade anterior
         public boolean onOptionsItemSelected(MenuItem item) {
             if (item.getItemId() == android.R.id.home) {
                 onBackPressed();

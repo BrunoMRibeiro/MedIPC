@@ -24,6 +24,7 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+// Classe responsável pela edição de uma consulta
 public class AppointmentEditActivity extends AppCompatActivity {
     private AppointmentProfile appointmentProfile;
     private ArrayList<EditText> editTexts;
@@ -40,11 +41,12 @@ public class AppointmentEditActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
+        // Recebe os dados dos appointments
         appointmentProfile = new AppointmentProfile();
         if(getIntent().getSerializableExtra(getString(R.string.appointment_key)) != null)
             appointmentProfile = (AppointmentProfile)getIntent().getSerializableExtra(getString(R.string.appointment_key));
 
-
+        // Evento para a ação de adicionar uma nova consulta
         Button btAddRow = findViewById(R.id.btAddAppointment);
         btAddRow.setOnClickListener(v -> {
             Intent myIntent = new Intent(AppointmentEditActivity.this, AppointmentAddRowActivity.class);
@@ -52,6 +54,7 @@ public class AppointmentEditActivity extends AppCompatActivity {
             AppointmentEditActivity.this.startActivity(myIntent);
         });
 
+        // Evento para a ação de remover uma consulta
         Button btDelRow = findViewById(R.id.btDelAppointment);
         btDelRow.setOnClickListener(v -> {
             Intent myIntent = new Intent(AppointmentEditActivity.this, AppointmentDelRowActivity.class);
@@ -59,7 +62,7 @@ public class AppointmentEditActivity extends AppCompatActivity {
             AppointmentEditActivity.this.startActivity(myIntent);
         });
 
-
+        // Evento para a ação de confirmar a edição das consultas
         Button btDone = findViewById(R.id.btDoneAPE);
         btDone.setOnClickListener(v -> {
             updateData();
@@ -95,6 +98,7 @@ public class AppointmentEditActivity extends AppCompatActivity {
         tableLayout.invalidate();
     }
 
+    // Classe responsável por mostrar uma tabela com os dados de todas as consultas
     @SuppressLint("UseCompatLoadingForDrawables")
     public void createFill(Appointment appointmentTable){
         TableLayout stk = findViewById(R.id.tableDataAppointmentEdit);
@@ -134,6 +138,7 @@ public class AppointmentEditActivity extends AppCompatActivity {
         }
     }
 
+    // Atualiza a tabela das consultas
     public void updateData(){
         ArrayList<AppointmentData> appointments = new ArrayList<>();
 
@@ -144,6 +149,7 @@ public class AppointmentEditActivity extends AppCompatActivity {
         appointmentProfile.getAppointment().setAppointmentData(appointments);
     }
 
+    // Caso o utilizador carregue no botão "up" volta para a Atividade anterior
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == android.R.id.home){
             onBackPressed();

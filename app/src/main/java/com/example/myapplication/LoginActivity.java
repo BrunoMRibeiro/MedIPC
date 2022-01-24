@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+// Classe responável pelo login na aplicação
 public class LoginActivity extends AppCompatActivity {
 
     private EditText Email;
@@ -23,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
         Password = (EditText)findViewById(R.id.etPassword);
         Login = (Button)findViewById(R.id.btnLogin);
 
+        // Evento para a ação de confirmar login
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    // Classe responsável pela validação do email e password
     private void validate(String email, String userPassword){
         if((email.equals("email@isec.pt")) && (userPassword.equals("1234"))){
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);

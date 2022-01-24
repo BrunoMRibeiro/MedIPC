@@ -24,6 +24,7 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+// Classe responsável por editar as medicações
 public class MedicationEditActivity extends AppCompatActivity {
     private MedicationProfile medicationProfile;
     private ArrayList<EditText> editTexts;
@@ -40,11 +41,12 @@ public class MedicationEditActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
+        // Recebe os dados das medicações
         medicationProfile = new MedicationProfile();
         if(getIntent().getSerializableExtra(getString(R.string.medication_key)) != null)
             medicationProfile = (MedicationProfile)getIntent().getSerializableExtra(getString(R.string.medication_key));
 
-
+        // Evento para a ação de adicionar uma nova medicação
         Button btAddRow = findViewById(R.id.btAddMedication);
         btAddRow.setOnClickListener(v -> {
             Intent myIntent = new Intent(MedicationEditActivity.this, MedicationAddRowActivity.class);
@@ -52,6 +54,7 @@ public class MedicationEditActivity extends AppCompatActivity {
             MedicationEditActivity.this.startActivity(myIntent);
         });
 
+        // Evento para a ação de remover uma medicação
         Button btDelRow = findViewById(R.id.btDelMedication);
         btDelRow.setOnClickListener(v -> {
             Intent myIntent = new Intent(MedicationEditActivity.this, MedicationDelRowActivity.class);
@@ -59,13 +62,13 @@ public class MedicationEditActivity extends AppCompatActivity {
             MedicationEditActivity.this.startActivity(myIntent);
         });
 
+        // Evento para a ação de confirmar a edição
         Button btDone = findViewById(R.id.btDoneME);
         btDone.setOnClickListener(v -> {
             updateData();
 
             String filename = "medication.srl";
             ObjectOutput out = null;
-
             try {
                 out = new ObjectOutputStream(new FileOutputStream(new File(getFilesDir(),"")+File.separator+filename));
                 out.writeObject(medicationProfile);
@@ -82,6 +85,7 @@ public class MedicationEditActivity extends AppCompatActivity {
             finish();
         });
 
+        // Evento para o botão de desligar a aplicação
         Button bLogOff = findViewById(R.id.LogOutME);
         bLogOff.setOnClickListener(v -> {
             moveTaskToBack(true);
@@ -94,6 +98,7 @@ public class MedicationEditActivity extends AppCompatActivity {
         tableLayout.invalidate();
     }
 
+    // Classe responsável por mostrar uma tabela com a informação de todas as medicações
     @SuppressLint("UseCompatLoadingForDrawables")
     public void createFill(Medication medicationTable){
         TableLayout stk = findViewById(R.id.tableDataMedicationEdit);
@@ -144,6 +149,7 @@ public class MedicationEditActivity extends AppCompatActivity {
         }
     }
 
+    // Classe responsável por atualizar a informação
     public void updateData(){
         ArrayList<MedicationData> medications = new ArrayList<>();
 
@@ -154,6 +160,7 @@ public class MedicationEditActivity extends AppCompatActivity {
         medicationProfile.getMedication().setMedicationData(medications);
     }
 
+    // Caso o utilizador carregue no botão "up" volta para a Atividade anterior
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == android.R.id.home){
             onBackPressed();
@@ -163,7 +170,6 @@ public class MedicationEditActivity extends AppCompatActivity {
             finish();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

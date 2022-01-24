@@ -14,6 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 
+import java.math.RoundingMode;
+import java.text.NumberFormat;
+import java.util.Locale;
+
+// Classe responsável por mostrar a informação do utilizador
 public class ProfileActivity extends AppCompatActivity {
     private Profile profile;
 
@@ -27,10 +32,12 @@ public class ProfileActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
+        // Recebe os dados do profile
         profile = new Profile();
         if(getIntent().getSerializableExtra(getString(R.string.profile)) != null)
             profile = (Profile)getIntent().getSerializableExtra(getString(R.string.profile));
 
+        // Evento para a ação de editar o profile
         Button btEdit = findViewById(R.id.btEditP);
         btEdit.setOnClickListener(v -> {
             Intent myIntent = new Intent(ProfileActivity.this, ProfileActivityEdit.class);
@@ -38,6 +45,7 @@ public class ProfileActivity extends AppCompatActivity {
             ProfileActivity.this.startActivity(myIntent);
         });
 
+        // Evento para a ação de aceder ao booklet
         Button btBooklet = findViewById(R.id.btCVBookletP);
         btBooklet.setOnClickListener(v -> {
             Intent myIntent = new Intent(ProfileActivity.this, BookletActivity.class);
@@ -45,13 +53,13 @@ public class ProfileActivity extends AppCompatActivity {
             ProfileActivity.this.startActivity(myIntent);
         });
 
+        // Evento para o botão de desligar a aplicação
         Button btLogOff = findViewById(R.id.LogOutP);
         btLogOff.setOnClickListener(v -> {
             moveTaskToBack(true);
             android.os.Process.killProcess(android.os.Process.myPid());
             System.exit(1);
         });
-
 
         EditText etName = findViewById(R.id.vlNameP);
         if (!profile.getName().trim().isEmpty()){
@@ -67,12 +75,17 @@ public class ProfileActivity extends AppCompatActivity {
             etSex.setText(profile.getSex());
         }
         EditText etHeight = findViewById(R.id.vlHeightP);
-        if (profile.getHeight() > 0){
+        if (profile.getHeight() > 0 && profile.getHeight() <= 250){
             etHeight.setText(String.valueOf(profile.getHeight()));
         }
         EditText etWeight = findViewById(R.id.vlWeightP);
-        if (profile.getWeight() > 0){
-            etWeight.setText(String.valueOf(profile.getWeight()));
+        if (profile.getWeight() > 0 && profile.getWeight() <= 300){
+            NumberFormat formatter = NumberFormat.getInstance(Locale.ENGLISH);
+            formatter.setMaximumFractionDigits(2);
+            formatter.setMinimumFractionDigits(2);
+            formatter.setRoundingMode(RoundingMode.HALF_UP);
+            Float formatedFloat = new Float(formatter.format(profile.getWeight()));
+            etWeight.setText(String.valueOf(formatedFloat));
         }
         EditText etBloodType = findViewById(R.id.vlBloodTypeP);
         if (!profile.getBloodType().trim().isEmpty()){
@@ -87,7 +100,7 @@ public class ProfileActivity extends AppCompatActivity {
         tableLayout.invalidate();
     }
 
-
+    // Caso o utilizador carregue no botão "up" volta para a Atividade anterior
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();

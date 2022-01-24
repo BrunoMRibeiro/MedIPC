@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 
+// Classe responsável por mostrar os dados dos alarmes
 public class AlarmActivity extends AppCompatActivity {
     private AlarmProfile alarmprofile;
 
@@ -28,11 +29,13 @@ public class AlarmActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
+        // Recebe os dados dos alarmes
         alarmprofile = new AlarmProfile();
         if(getIntent().getSerializableExtra(getString(R.string.alarm)) != null)
             alarmprofile = (AlarmProfile)getIntent().getSerializableExtra(getString(R.string.alarm));
 
 
+        // Evento para o botão de editar alarme
         Button aEdit = findViewById(R.id.btEditAlarm);
         aEdit.setOnClickListener(v -> {
             Intent myIntent = new Intent(AlarmActivity.this, AlarmEditActivity.class);
@@ -40,6 +43,7 @@ public class AlarmActivity extends AppCompatActivity {
             AlarmActivity.this.startActivity(myIntent);
         });
 
+        // Evento para o botão de desligar a aplicação
         Button aLogOff = findViewById(R.id.LogOutAlarm);
         aLogOff.setOnClickListener(v -> {
             moveTaskToBack(true);
@@ -53,6 +57,7 @@ public class AlarmActivity extends AppCompatActivity {
     }
 
 
+    // Classe responsável por mostrar todos os alarmes
     @SuppressLint("UseCompatLoadingForDrawables")
     public void init(Alarm alarmsTable) {
         TableLayout stk = findViewById(R.id.tableDataAlarm);
@@ -95,6 +100,7 @@ public class AlarmActivity extends AppCompatActivity {
         }
     }
 
+    // Caso o utilizador carregue no botão "up" volta para a Atividade anterior
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();

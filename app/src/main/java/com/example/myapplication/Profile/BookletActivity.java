@@ -14,6 +14,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.R;
 
+// Classe responsável por mostrar a informação do boletim de vacinas
 public class BookletActivity extends AppCompatActivity {
     private Profile profile;
 
@@ -27,10 +28,12 @@ public class BookletActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
+        // Recebe os dados do profile
         profile = new Profile();
         if(getIntent().getSerializableExtra(getString(R.string.profile)) != null)
             profile = (Profile)getIntent().getSerializableExtra(getString(R.string.profile));
 
+        // Evento para a ação de editar o booklet
         Button bEdit = findViewById(R.id.btEditB);
         bEdit.setOnClickListener(v -> {
             Intent myIntent = new Intent(BookletActivity.this, BookletEditActivity.class);
@@ -38,6 +41,7 @@ public class BookletActivity extends AppCompatActivity {
             BookletActivity.this.startActivity(myIntent);
         });
 
+        // Evento para o botão de desligar a aplicação
         Button bLogOff = findViewById(R.id.LogOutB);
         bLogOff.setOnClickListener(v -> {
             moveTaskToBack(true);
@@ -50,7 +54,7 @@ public class BookletActivity extends AppCompatActivity {
         tableLayout.invalidate();
     }
 
-
+    // Classe responsável por mostrar a informação do booklet
     @SuppressLint("UseCompatLoadingForDrawables")
     public void init(Booklet vaccinesTable) {
         TableLayout stk = findViewById(R.id.tableDataB);
@@ -84,6 +88,7 @@ public class BookletActivity extends AppCompatActivity {
         }
     }
 
+    // Caso o utilizador carregue no botão "up" volta para a Atividade anterior
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();

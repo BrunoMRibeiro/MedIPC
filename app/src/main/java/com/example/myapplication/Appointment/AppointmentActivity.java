@@ -21,6 +21,7 @@ import com.example.myapplication.Medication.MedicationEditActivity;
 import com.example.myapplication.Medication.MedicationProfile;
 import com.example.myapplication.R;
 
+// Classe que mostra os appointments existentes
 public class AppointmentActivity extends AppCompatActivity {
     private AppointmentProfile appointmentprofile;
 
@@ -34,10 +35,12 @@ public class AppointmentActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
+        // Recebe os dados dos appointments
         appointmentprofile = new AppointmentProfile();
         if(getIntent().getSerializableExtra(getString(R.string.appointment_key)) != null)
             appointmentprofile = (AppointmentProfile) getIntent().getSerializableExtra(getString(R.string.appointment_key));
 
+        // Evento para a ação de editar uma consulta
         Button btEdit = findViewById(R.id.btEditAp);
         btEdit.setOnClickListener(v -> {
             Intent myIntent = new Intent(AppointmentActivity.this, AppointmentEditActivity.class);
@@ -45,6 +48,7 @@ public class AppointmentActivity extends AppCompatActivity {
             AppointmentActivity.this.startActivity(myIntent);
         });
 
+        // Evento para o botão de desligar a aplicação
         Button btLogOff = findViewById(R.id.LogOutAp);
         btLogOff.setOnClickListener(v -> {
             moveTaskToBack(true);
@@ -57,6 +61,7 @@ public class AppointmentActivity extends AppCompatActivity {
         tableLayout.invalidate();
     }
 
+    // Classe responsável por mostrar todos os appointments
     @SuppressLint("UseCompatLoadingForDrawables")
     public void init(Appointment appointmentTable){
         TableLayout stk = findViewById(R.id.tableDataAppointment);
@@ -92,6 +97,7 @@ public class AppointmentActivity extends AppCompatActivity {
         }
     }
 
+    // Caso o utilizador carregue no botão "up" volta para a Atividade anterior
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
