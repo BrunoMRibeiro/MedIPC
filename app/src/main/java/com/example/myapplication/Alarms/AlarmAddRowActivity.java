@@ -61,39 +61,47 @@ public class AlarmAddRowActivity extends AppCompatActivity {
                     int horas2 = Integer.parseInt(horas);
                     int minutos2 = Integer.parseInt(minutos);
 
+                    if((TextUtils.isEmpty(medicamento) || TextUtils.isEmpty(descricao))) {
+                        Toast.makeText(this,
+                                "Need to insert all Appointment data",
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
                     intent.putExtra(AlarmClock.EXTRA_HOUR,horas2);
                     intent.putExtra(AlarmClock.EXTRA_MINUTES,minutos2);
                     intent.putExtra(AlarmClock.EXTRA_MESSAGE,mensagem);
+
                     if(horas2 <= 24 && minutos2 <= 60) {
+                        startActivity(intent);
+
+                        AlarmData alarmData = new AlarmData(medicamento, descricao, tempo);
+                        alarmprofile.getAlarm().getAlarmsData().add(alarmData);
+
                         String filename = "alarm.srl";
                         ObjectOutput out = null;
-
                         try {
                             out = new ObjectOutputStream(new FileOutputStream(new File(getFilesDir(),"")+File.separator+filename));
                             out.writeObject(alarmprofile);
                             out.close();
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        AlarmData alarmData = new AlarmData(medicamento, descricao, tempo);
-                        alarmprofile.getAlarm().getAlarmsData().add(alarmData);
 
-                        startActivity(intent);
+                        Thread.sleep(5000);
                         Intent myIntent = new Intent(AlarmAddRowActivity.this, AlarmEditActivity.class);
                         myIntent.putExtra(getString(R.string.alarm), alarmprofile);
                         AlarmAddRowActivity.this.startActivity(myIntent);
                         finish();
                     }else{
                         Toast.makeText(this,
-                                "Need to insert: Hour:Minutes",
+                                "Set time need to insert like example: Hour:Minutes",
                                 Toast.LENGTH_SHORT).show();
                     }
-                }catch (ArrayIndexOutOfBoundsException | NumberFormatException e){
+                }catch (ArrayIndexOutOfBoundsException | NumberFormatException | InterruptedException e){
                     Toast.makeText(this,
-                            "Need to insert: Hour:Minutes",
+                            "Set time need to insert like example: Hour:Minutes",
                             Toast.LENGTH_SHORT).show();
                 }
         });

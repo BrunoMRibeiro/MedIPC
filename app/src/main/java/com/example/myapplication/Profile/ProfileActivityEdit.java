@@ -47,15 +47,15 @@ public class ProfileActivityEdit extends AppCompatActivity {
         Button button = findViewById(R.id.btDonePE);
         button.setOnClickListener(v -> {
             if (profile.getAge() < 0 || profile.getAge() > 100){
-                Toast.makeText(this, "Insira uma idade entre 1 e 100", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Age must be between 1 and 100", Toast.LENGTH_SHORT).show();
                 return;
             }
             if (profile.getWeight() < 0 || profile.getWeight() > 300){
-                Toast.makeText(this, "Insira um peso entre 1kg e 300kg", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Weight must be between 1kg and 300kg", Toast.LENGTH_SHORT).show();
                 return;
             }
             if (profile.getHeight() < 0 || profile.getHeight() > 250){
-                Toast.makeText(this, "Insira uma altura entre 1cm e 250cm", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Height must be between 1 and 250", Toast.LENGTH_SHORT).show();
                 return;
             }
 

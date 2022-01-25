@@ -61,10 +61,6 @@ public class BookletAddRowActivity extends AppCompatActivity {
                 myIntent.putExtra(getString(R.string.profile), profile);
                 BookletAddRowActivity.this.startActivity(myIntent);
                 finish();
-            }else{
-                Toast.makeText(this,
-                        "Insira o nome e a data corretamente",
-                        Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -106,7 +102,7 @@ public class BookletAddRowActivity extends AppCompatActivity {
         }
         if (vaccine.length() > 50){
             Toast.makeText(this,
-                    "O nome da vacina tem de ter no máximo 50 caracteres",
+                    "Vaccine name can't have more than 50 characters",
                     Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -123,27 +119,24 @@ public class BookletAddRowActivity extends AppCompatActivity {
                 int mes = Integer.parseInt(date2);
                 int ano = Integer.parseInt(date3);
                 if(dia <= 31 && dia > 0 && mes <= 12 && mes > 0 && ano >= 1900){
-                    int length = (int)(Math.log10(ano)+1);
-                    Log.i("a", "length ->" + length);
-                    if (length > 4){
-                        Toast.makeText(this, "Insira uma data conforme o exemplo: 24/01/2022", Toast.LENGTH_SHORT).show();
-                        return false;
-                    }
                     date = dia + "/" + mes + "/" + ano;
                     VaccineData vaccineData = new VaccineData(vaccine, date);
                     profile.getBooklet().getVaccinesData().add(vaccineData);
+                    return true;
                 }
                 else{
-                    Toast.makeText(this, "Insira uma data conforme o exemplo: 24/01/2022", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Insert date like example: 24/01/2022", Toast.LENGTH_SHORT).show();
                     return false;
                 }
-                return true;
             }catch (NumberFormatException e){
-                Toast.makeText(this, "Insira uma data conforme o exemplo: 24/01/2022", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Insert date like example: 24/01/2022", Toast.LENGTH_SHORT).show();
                 return false;
             }
+        }else{
+            Toast.makeText(this, "Insert date like example: 24/01/2022", Toast.LENGTH_SHORT).show();
+            return false;
         }
-        return false;
+
     }
 
     // Caso o utilizador carregue no botão "up" volta para a Atividade anterior

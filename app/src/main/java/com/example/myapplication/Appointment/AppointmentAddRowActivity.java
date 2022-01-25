@@ -61,6 +61,9 @@ public class AppointmentAddRowActivity extends AppCompatActivity {
                 AppointmentAddRowActivity.this.startActivity(myIntent);
                 finish();
             }
+            else{
+                Toast.makeText(this, "Insert date like example: 24/01/2022", Toast.LENGTH_SHORT).show();
+            }
         });
 
         // Evento para a ação de cancelar a adição de nova consulta
@@ -115,17 +118,18 @@ public class AppointmentAddRowActivity extends AppCompatActivity {
                     date = date1 + "/" + date2 + "/" + date3;
                     AppointmentData appointmentData = new AppointmentData(info, date);
                     appointmentProfile.getAppointment().getAppointmentData().add(appointmentData);
+                    return true;
                 } else {
-                    Toast.makeText(this, "Insira uma data conforme o exemplo: 24/01/2022", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Insert date like example: 24/01/2022", Toast.LENGTH_SHORT).show();
                     return false;
                 }
             }catch (NumberFormatException e){
-                Toast.makeText(this, "Insira uma data conforme o exemplo: 24/01/2022", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Insert date like example: 24/01/2022", Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
 
-        return true;
+        return false;
     }
 
     // Caso o utilizador carregue no botão "up" volta para a Atividade anterior

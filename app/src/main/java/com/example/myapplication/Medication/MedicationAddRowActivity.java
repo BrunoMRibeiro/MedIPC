@@ -59,10 +59,7 @@ public class MedicationAddRowActivity extends AppCompatActivity {
                 myIntent.putExtra(getString(R.string.medication_key), medicationProfile);
                 MedicationAddRowActivity.this.startActivity(myIntent);
                 finish();
-            }else{
-                Toast.makeText(this, "Insira uma data conforme o exemplo: 10:20", Toast.LENGTH_SHORT).show();
             }
-
         });
 
         // Evento para a ação de cancelar a adição da nova medicação
@@ -102,6 +99,7 @@ public class MedicationAddRowActivity extends AppCompatActivity {
         try{
             intervalo = Integer.parseInt(hours2);
         }catch (NumberFormatException e){
+            Toast.makeText(this, "Insert a number between 1 and 23 in Time-int", Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -126,11 +124,13 @@ public class MedicationAddRowActivity extends AppCompatActivity {
                 MedicationData medicationData = new MedicationData(name, hours, nextTake);
                 medicationProfile.getMedication().getMedicationData().add(medicationData);
             } else {
-                Toast.makeText(this,
-                        "Insira uma data correta",
-                        Toast.LENGTH_SHORT).show();
+                if (intervalo > 23 || intervalo < 0)
+                    Toast.makeText(this, "Insert a number between 1 and 23 in Time-int", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(this, "Insert next-take like example: 23:00", Toast.LENGTH_SHORT).show();
             }
         }else{
+            Toast.makeText(this, "Insert next-take like example: 23:00", Toast.LENGTH_SHORT).show();
             return false;
         }
         if(TextUtils.isEmpty(name) || TextUtils.isEmpty(hours) || TextUtils.isEmpty(nextTake)) {
