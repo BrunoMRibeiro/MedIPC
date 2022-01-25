@@ -179,12 +179,12 @@ public class ProfileActivityEdit extends AppCompatActivity {
         // Evento para edição do peso
         EditText etWeight = findViewById(R.id.vlWeightPE);
         if (profile.getWeight() > 0 && profile.getWeight() <= 300){
-            NumberFormat formatter = NumberFormat.getInstance(Locale.ENGLISH);
+           /* NumberFormat formatter = NumberFormat.getInstance(Locale.ENGLISH);
             formatter.setMaximumFractionDigits(2);
             formatter.setMinimumFractionDigits(2);
             formatter.setRoundingMode(RoundingMode.HALF_UP);
-            Float formatedFloat = Float.valueOf(formatter.format(profile.getWeight()));
-            etWeight.setText(String.valueOf(formatedFloat));
+            Float formatedFloat = Float.valueOf(formatter.format(profile.getWeight()));*/
+            etWeight.setText(String.valueOf(profile.getWeight()));
         }
         etWeight.addTextChangedListener(new TextWatcher() {
             @Override
@@ -196,12 +196,12 @@ public class ProfileActivityEdit extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 try {
-                    NumberFormat formatter = NumberFormat.getInstance(Locale.ENGLISH);
+                  /*  NumberFormat formatter = NumberFormat.getInstance(Locale.ENGLISH);
                     formatter.setMaximumFractionDigits(2);
                     formatter.setMinimumFractionDigits(2);
                     formatter.setRoundingMode(RoundingMode.HALF_UP);
-                    Float formatedFloat = Float.valueOf(formatter.format(profile.getWeight()));
-                    profile.setWeight(formatedFloat);
+                    Float formatedFloat = Float.valueOf(formatter.format(profile.getWeight()));*/
+                    profile.setWeight(Float.valueOf(editable.toString()));
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }

@@ -80,12 +80,12 @@ public class ProfileActivity extends AppCompatActivity {
         }
         EditText etWeight = findViewById(R.id.vlWeightP);
         if (profile.getWeight() > 0 && profile.getWeight() <= 300){
-            NumberFormat formatter = NumberFormat.getInstance(Locale.ENGLISH);
+            /*NumberFormat formatter = NumberFormat.getInstance(Locale.ENGLISH);
             formatter.setMaximumFractionDigits(2);
             formatter.setMinimumFractionDigits(2);
             formatter.setRoundingMode(RoundingMode.HALF_UP);
-            Float formatedFloat = new Float(formatter.format(profile.getWeight()));
-            etWeight.setText(String.valueOf(formatedFloat));
+            Float formatedFloat = new Float(formatter.format(profile.getWeight()));*/
+            etWeight.setText(String.valueOf(profile.getWeight()));
         }
         EditText etBloodType = findViewById(R.id.vlBloodTypeP);
         if (!profile.getBloodType().trim().isEmpty()){
